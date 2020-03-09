@@ -40,23 +40,8 @@ public class RightPanel extends JPanel {
         model.addColumn(columnNames[3]);
         model.addColumn(columnNames[4]);
 
-// Append a row
-//        model.addRow(new Object[]{"v1", "v2"});
-
         pTable.setShowGrid(true);
         pTable.setGridColor(Color.BLACK);
-//        pTable.setRowHeight(40);
-//        pTable.getColumnModel().getColumn(0).setMinWidth(parentFrame.getWidth()/5);
-//        pTable.getColumnModel().getColumn(1).setMinWidth(parentFrame.getWidth()/20);
-//        pTable.getColumnModel().getColumn(2).setMinWidth(parentFrame.getWidth()/10);
-//        pTable.getColumnModel().getColumn(3).setMinWidth(parentFrame.getWidth()/10);
-//        pTable.getColumnModel().getColumn(4).setMinWidth(parentFrame.getWidth()/20);
-
-//        pTable.getColumnModel().getColumn(0).
-
-//        pTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-//        this.add(pTable.getTableHeader());
-//        this.add(pTable);
 
         JScrollPane scrollPane = new JScrollPane(pTable);
         pTable.setFillsViewportHeight(true);
@@ -71,14 +56,5 @@ public class RightPanel extends JPanel {
         southPanel.add(button1);
         southPanel.add(button2);
         this.add(southPanel,BorderLayout.SOUTH);
-//        this.add(button2,BorderLayout.SOUTH);
-
-
-//        leftPanel = new LeftPanel(this);
-//        rightPanel = new RightPanel(this);
-//
-//        this.setLayout(new BorderLayout());
-//        this.add(BorderLayout.NORTH,scrollPane);
-//        this.add(BorderLayout.WEST,);
     }
 }

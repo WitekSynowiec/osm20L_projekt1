@@ -5,13 +5,15 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static com.company.MainWindow.leftPanel;
 import static com.company.MainWindow.rightPanel;
 import static com.company.RightPanel.pTable;
 
 public class ActionHandler implements ActionListener, ListSelectionListener{
-
+//    ArrayList<Pair> pair = new ArrayList<Pair>();
+    ListSelectionModel cellSelectionModel = pTable.getSelectionModel();
     public ActionHandler(){
         LeftPanel.pdPanel.spdButton.addActionListener(this);
         LeftPanel.pdPanel.cpdButton.addActionListener(this);
@@ -22,7 +24,30 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
         LeftPanel.pdPanel.getWomanRadioButton.addActionListener(this);
         RightPanel.button1.addActionListener(this);
         RightPanel.button2.addActionListener(this);
-        pTable.getSelectionModel().addListSelectionListener(this);
+        pTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        pTable.getSelectionModel().addListSelectionListener(e -> {
+            clear_pd_sheet();
+//                LeftPanel.pdPanel.getNameTextField.setText(pair.get(pTable.getSelectedRow()).value1);
+//                LeftPanel.pdPanel.getSurnameTextField.setText(pair.get(pTable.getSelectedRow()).value2);
+            LeftPanel.pdPanel.getNameTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(),1).toString());
+            LeftPanel.pdPanel.getPeselTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(), 2).toString());
+            if (pTable.getModel().getValueAt(pTable.getSelectedRow(), 1).toString().equals(PatientRecord.Sex_enum.M.getSex())){
+                LeftPanel.pdPanel.getManRadioButton.setSelected(true);
+                LeftPanel.pdPanel.getWomanRadioButton.setSelected(false);
+            }
+            else if (pTable.getModel().getValueAt(pTable.getSelectedRow(), 1).toString().equals(PatientRecord.Sex_enum.K.getSex())){
+                LeftPanel.pdPanel.getManRadioButton.setSelected(false);
+                LeftPanel.pdPanel.getWomanRadioButton.setSelected(true);
+            }
+            if (pTable.getModel().getValueAt(pTable.getSelectedRow(),3).toString().equals(PatientRecord.Insurance_enum.NO_ANS.getIns()))
+                LeftPanel.pdPanel.iComboBox.setSelectedIndex(0);
+            else if (pTable.getModel().getValueAt(pTable.getSelectedRow(),3).toString().equals(PatientRecord.Insurance_enum.NFZ.getIns()))
+                LeftPanel.pdPanel.iComboBox.setSelectedIndex(1);
+            else if (pTable.getModel().getValueAt(pTable.getSelectedRow(),3).toString().equals(PatientRecord.Insurance_enum.LACK.getIns()))
+                LeftPanel.pdPanel.iComboBox.setSelectedIndex(2);
+            else if (pTable.getModel().getValueAt(pTable.getSelectedRow(),3).toString().equals(PatientRecord.Insurance_enum.PRIVATE.getIns()))
+                LeftPanel.pdPanel.iComboBox.setSelectedIndex(3);
+        });
     }
 
     private void clear_pd_sheet() {
@@ -82,9 +107,16 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
                     ins =  PatientRecord.Insurance_enum.NO_ANS;
 
                 //tworzenie nowego obiektu listy patient_database
-//            PatientRegister.patient_database.add(new PatientRecord(leftPanel.pdPanel.getNameTextField.getText(),leftPanel.pdPanel.getSurnameTextField.getText(),Long.parseLong(leftPanel.pdPanel.getPeselTextField.getText()), sex, ins, false));
-                Object[] addon = {LeftPanel.pdPanel.getNameTextField.getText()+" "+ LeftPanel.pdPanel.getSurnameTextField.getText(),sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
-                rightPanel.model.addRow(addon);
+
+//                pair = new Pair(LeftPanel.pdPanel.getNameTextField.getText().toString(),LeftPanel.pdPanel.getSurnameTextField.getText().toString());
+                // alternative
+//                Pair newpair = new Pair(LeftPanel.pdPanel.getNameTextField.getText(),LeftPanel.pdPanel.getSurnameTextField.getText());
+//                pair.add(newpair);
+//                Object[] addon = {pair.get(pair.size()-1).value1+ " "+pair.get(pair.size()-1).value2,sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
+                Object[] addon = {LeftPanel.pdPanel.getNameTextField.getText()+ " "+LeftPanel.pdPanel.getNameTextField.getText(),sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
+
+//                rightPanel.model.add
+                rightPanel.model.removeRow(0);
                 clear_pd_sheet();
 
             }
@@ -94,13 +126,20 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
                 clear_pd_sheet();
             }
 
-//        if ((source == leftPanel.pdPanel.spdButton || source == leftPanel.pdPanel.cpdButton)&&(leftPanel.pdPanel.getNameTextField.getText().isEmpty()||leftPanel.pdPanel.getSurnameTextField.getText().isEmpty()||leftPanel.pdPanel.getPeselTextField.getText().isEmpty()))  return;
-////        if (source == leftPanel.pdPanel.getManRadioButton && )
         if (source == RightPanel.button2){
-            rightPanel.model.removeRow(pTable.getSelectedRow());
-        }
-//        if (source == pTable.getSelectedRow())
+            clear_pd_sheet();
+//            int no = pTable.getSelectedRow();
+//            rightPanel.model.removeRow(no);
+//////            pTable.getSelectionModel().
+////            rightPanel.model.addRow(new String[]{"", "", "", "", "", ""});
+////            pair.add(new Pair )
+////            pair.remove(no);
+//            rightPanel.model.removeRow(pTable.getSelectedRow());
+//            pTable.setRowHeight(pTable.getSelectedRow(), 120);
+            System.out.println(pTable.getSelectedRow());
 
+//            System.out.println(rightPanel.model.row);
+        }
 
         }
 
