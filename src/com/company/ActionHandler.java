@@ -3,17 +3,17 @@ package com.company;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-import static com.company.MainWindow.leftPanel;
 import static com.company.MainWindow.rightPanel;
 import static com.company.RightPanel.pTable;
 
 public class ActionHandler implements ActionListener, ListSelectionListener{
-//    ArrayList<Pair> pair = new ArrayList<Pair>();
     ListSelectionModel cellSelectionModel = pTable.getSelectionModel();
+    LinkedList<Pair> pair = new LinkedList<>();
     public ActionHandler(){
         LeftPanel.pdPanel.spdButton.addActionListener(this);
         LeftPanel.pdPanel.cpdButton.addActionListener(this);
@@ -27,9 +27,10 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
         pTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         pTable.getSelectionModel().addListSelectionListener(e -> {
             clear_pd_sheet();
-//                LeftPanel.pdPanel.getNameTextField.setText(pair.get(pTable.getSelectedRow()).value1);
-//                LeftPanel.pdPanel.getSurnameTextField.setText(pair.get(pTable.getSelectedRow()).value2);
-            LeftPanel.pdPanel.getNameTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(),1).toString());
+                LeftPanel.pdPanel.getNameTextField.setText(pair.get(pTable.getSelectedRow()).value1);
+                LeftPanel.pdPanel.getSurnameTextField.setText(pair.get(pTable.getSelectedRow()).value2);
+//            LeftPanel.pdPanel.getNameTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(),1).toString());
+//            LeftPanel.pdPanel.getPeselTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(), 2).toString());
             LeftPanel.pdPanel.getPeselTextField.setText(pTable.getModel().getValueAt(pTable.getSelectedRow(), 2).toString());
             if (pTable.getModel().getValueAt(pTable.getSelectedRow(), 1).toString().equals(PatientRecord.Sex_enum.M.getSex())){
                 LeftPanel.pdPanel.getManRadioButton.setSelected(true);
@@ -48,6 +49,8 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
             else if (pTable.getModel().getValueAt(pTable.getSelectedRow(),3).toString().equals(PatientRecord.Insurance_enum.PRIVATE.getIns()))
                 LeftPanel.pdPanel.iComboBox.setSelectedIndex(3);
         });
+        if (pTable.isEditing())
+            pTable.getCellEditor().stopCellEditing();
     }
 
     private void clear_pd_sheet() {
@@ -77,10 +80,7 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
-            if (source == pTable.getSelectionModel())
-            {
-                LeftPanel.pdPanel.getNameTextField.setText("LUBUIE");
-            }
+
             // tylko jedna płeć może być zaznaczona
             if (source == LeftPanel.pdPanel.getManRadioButton && LeftPanel.pdPanel.getWomanRadioButton.isSelected())
                 LeftPanel.pdPanel.getWomanRadioButton.setSelected(false);
@@ -108,15 +108,14 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
 
                 //tworzenie nowego obiektu listy patient_database
 
-//                pair = new Pair(LeftPanel.pdPanel.getNameTextField.getText().toString(),LeftPanel.pdPanel.getSurnameTextField.getText().toString());
+//                pair = new Pair(LeftPanel.pdPanel.getNameTextField.getText(),LeftPanel.pdPanel.getSurnameTextField.getText());
                 // alternative
-//                Pair newpair = new Pair(LeftPanel.pdPanel.getNameTextField.getText(),LeftPanel.pdPanel.getSurnameTextField.getText());
-//                pair.add(newpair);
-//                Object[] addon = {pair.get(pair.size()-1).value1+ " "+pair.get(pair.size()-1).value2,sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
-                Object[] addon = {LeftPanel.pdPanel.getNameTextField.getText()+ " "+LeftPanel.pdPanel.getNameTextField.getText(),sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
+                Pair newPair = new Pair(LeftPanel.pdPanel.getNameTextField.getText(),LeftPanel.pdPanel.getSurnameTextField.getText());
+                pair.add(newPair);
+                Object[] addon = {pair.get(pair.size()-1).value1+ " "+pair.get(pair.size()-1).value2,sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
+//                Object[] addon = {LeftPanel.pdPanel.getNameTextField.getText()+ " "+LeftPanel.pdPanel.getNameTextField.getText(),sex.getSex(),Long.parseLong(LeftPanel.pdPanel.getPeselTextField.getText()),ins.getIns(), false};
 
-//                rightPanel.model.add
-                rightPanel.model.removeRow(0);
+                rightPanel.model.addRow(addon);
                 clear_pd_sheet();
 
             }
@@ -125,18 +124,34 @@ public class ActionHandler implements ActionListener, ListSelectionListener{
             {
                 clear_pd_sheet();
             }
+//            int t[]  = new int[4];
+//            int a = Math.;
+
 
         if (source == RightPanel.button2){
             clear_pd_sheet();
-//            int no = pTable.getSelectedRow();
+            int no = pTable.getSelectedRow();
+//            pair.remove(no);
+//            pTable.setSortable( false );
+//            model.removeRow( selectedModelRow );
+//            clsController.getTable().setSortable( true );
+            DefaultCellEditor dce = (DefaultCellEditor)pTable.getCellEditor();
+            if (dce != null) dce.stopCellEditing();
+            int viewIndex = pTable.getSelectedRow();
+//            if(viewIndex != -1) {
+//                int modelIndex = pTable.convertRowIndexToModel(viewIndex); // converts the row index in the view to the appropriate index in the model
+//                DefaultTableModel model = (DefaultTableModel)pTable.getModel();
+//                model.removeRow(modelIndex);
+//            }
+            rightPanel.model.removeRow(no);
 //            rightPanel.model.removeRow(no);
 //////            pTable.getSelectionModel().
 ////            rightPanel.model.addRow(new String[]{"", "", "", "", "", ""});
 ////            pair.add(new Pair )
 ////            pair.remove(no);
+
 //            rightPanel.model.removeRow(pTable.getSelectedRow());
 //            pTable.setRowHeight(pTable.getSelectedRow(), 120);
-            System.out.println(pTable.getSelectedRow());
 
 //            System.out.println(rightPanel.model.row);
         }
