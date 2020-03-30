@@ -1,4 +1,4 @@
-package com.company.gui;
+package com.company.gui.app_view;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

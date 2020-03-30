@@ -1,4 +1,7 @@
-package com.company.gui;
+package com.company.gui.app_view;
+
+import com.company.gui.app_view.LeftPanel;
+import com.company.gui.app_view.RightPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
-    static LeftPanel leftPanel;
-    static RightPanel  rightPanel;
+    private LeftPanel leftPanel;
+    private RightPanel rightPanel;
     public MainWindow(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -21,7 +24,7 @@ public class MainWindow extends JFrame {
         this.add(BorderLayout.EAST,rightPanel);
         this.add(BorderLayout.WEST,leftPanel);
 
-        ActionHandler handler = new ActionHandler();
+//        ActionHandler handler = new ActionHandler();
 
     }
 

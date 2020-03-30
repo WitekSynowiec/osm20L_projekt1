@@ -1,12 +1,7 @@
 package com.company.data_model;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class PatientRegister {
-    static LinkedList<PatientRecord> patient_database;
-    public PatientRegister(){
-
-    }
-
-
+    static ArrayList<PatientRecord> patient_database;
 }

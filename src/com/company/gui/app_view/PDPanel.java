@@ -1,5 +1,6 @@
-package com.company.gui;
+package com.company.gui.app_view;
 
+import com.company.data_model.Insurance;
 import com.company.data_model.PatientRecord;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class PDPanel extends JPanel {
         getManRadioButton = new JRadioButton("Mężczyzna", false);
 
         getInsLabel = new JLabel("Ubezpieczenie");
-        ins_states = new String[]{PatientRecord.Insurance.NO_ANS.getIns(), PatientRecord.Insurance.NFZ.getIns(), PatientRecord.Insurance.LACK.getIns(), PatientRecord.Insurance.PRIVATE.getIns()};
+        ins_states = new String[]{Insurance.NO_ANS.getIns(), Insurance.NFZ.getIns(), Insurance.LACK.getIns(), Insurance.PRIVATE.getIns()};
         iComboBox = new JComboBox<>(ins_states);
 
         spdButton = new JButton("Zapisz");
