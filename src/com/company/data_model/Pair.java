@@ -1,4 +1,4 @@
-package com.company;
+package com.company.data_model;
 
 public class Pair {
     String value1;
