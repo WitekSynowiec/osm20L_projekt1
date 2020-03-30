@@ -14,7 +14,7 @@
 //import java.awt.event.ActionListener;
 //import java.util.LinkedList;
 //
-//import static com.company.gui.MainWindow.rightPanel;
+//import static com.company.gui.AppView.rightPanel;
 //import static com.company.gui.RightPanel.pTable;
 //
 //public class ActionHandler implements ActionListener, ListSelectionListener{

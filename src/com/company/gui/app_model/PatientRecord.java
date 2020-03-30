@@ -1,4 +1,4 @@
-package com.company.data_model;
+package com.company.gui.app_model;
 
 public class PatientRecord {
     private FullName fullName;

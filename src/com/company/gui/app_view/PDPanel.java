@@ -1,7 +1,7 @@
 package com.company.gui.app_view;
 
-import com.company.data_model.Insurance;
-import com.company.data_model.PatientRecord;
+import com.company.gui.app_model.Insurance;
+import com.company.gui.app_model.PatientRecord;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +15,16 @@ public class PDPanel extends JPanel {
     JComboBox<String> iComboBox;
     JButton spdButton, cpdButton;
 
+
+
     public PDPanel(JFrame parentPanel){
         this.setBackground(Color.lightGray);
         this.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()*3/5));
         this.setBorder(BorderFactory.createTitledBorder("Dane pacjenta: "));
 //###########################
+//
         getNameLabel = new JLabel("Imię: ");
+//        getNameLabel.setSize(new Dimension(3,4));
         getNameTextField = new JTextField(10);
         getSurnameLabel = new JLabel("Nazwisko: ");
         getSurnameTextField = new JTextField(10);

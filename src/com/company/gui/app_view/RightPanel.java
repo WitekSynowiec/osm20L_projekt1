@@ -9,16 +9,18 @@ public class RightPanel extends JPanel {
             {"Klara Synowiec","a","a","a","a"},
 
     };
-    static String[] columnNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
-    static JButton button1  = new JButton("Dodaj");
-    static JButton button2  = new JButton("Usuń");
-    static JPanel southPanel;
-    static JTable pTable;
+    String[] columnNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
+    JButton button1  = new JButton("Dodaj");
+    JButton button2  = new JButton("Usuń");
+    JPanel southPanel;
+    JTable pTable;
     DefaultTableModel model;
 
     public RightPanel(JFrame parentFrame){
         this.setBackground(Color.lightGray);
-        this.setPreferredSize(new Dimension(parentFrame.getBounds().width * 3 / 5, parentFrame.getBounds().height));
+//        this.setPreferredSize(new Dimension(parentFrame.getBounds().width * 3 / 5, parentFrame.getBounds().height));
+        int finalwidth = parentFrame.getBounds().width - 420;
+        this.setPreferredSize(new Dimension(finalwidth, parentFrame.getBounds().height));
         this.setBorder(BorderFactory.createTitledBorder("Lista Pacjentów: "));
 
         southPanel = new JPanel();

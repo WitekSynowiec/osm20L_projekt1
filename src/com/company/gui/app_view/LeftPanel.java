@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LeftPanel extends JPanel {
-    static  PDPanel pdPanel;
-    static EPanel ePanel;
+    PDPanel pdPanel;
+    EPanel ePanel;
     public LeftPanel(JFrame parentFrame){
         this.setPreferredSize(new Dimension(parentFrame.getWidth() * 2 / 5, parentFrame.getHeight()));
 //        this.setBorder(BorderFactory.createTitledBorder("Lista Pacjentów: "));

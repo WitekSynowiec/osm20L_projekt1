@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EPanel extends JPanel{
-    static JLabel label1, label2, label3, label4;
-    static JTextField textField1, textField2, textField3;
+    JLabel label1, label2, label3, label4;
+    JTextField textField1, textField2, textField3;
     JButton button1, button2, button3;
-    static JCalendar calendar;
+    JCalendar calendar;
     public EPanel(JFrame parentPanel){
         this.setBackground(Color.lightGray);
         this.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()*2/5));
