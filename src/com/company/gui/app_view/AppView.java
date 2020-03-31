@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AppView extends JFrame {
-//    private ViewListener modelListener;
     private PDPanel patientDataPanel;
     private EPanel examinationPanel;
     private TablePanel tablePanel;
@@ -35,6 +34,7 @@ public class AppView extends JFrame {
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
         tablePanel = new TablePanel();
+        patientRegister =  new PatientRegister();
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
