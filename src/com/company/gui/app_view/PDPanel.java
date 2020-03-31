@@ -68,13 +68,23 @@ public class PDPanel extends JPanel {
         getNameTextField.setText(text);
     }
 
+    public void clearGetNameTextField(){
+        setGetNameTextField("");
+    }
+
+
     public String getGetSurnameTextField()
     {
         return getSurnameTextField.getText();
     }
+
     public void setGetSurnameTextField(String text)
     {
         getSurnameTextField.setText(text);
+    }
+
+    public void clearGetSurnameTextField(){
+        setGetSurnameTextField("");
     }
 
     public Long getGetPeselTextField()
@@ -87,6 +97,12 @@ public class PDPanel extends JPanel {
         getSurnameTextField.setText(text.toString());
     }
 
+    public void clearGetPeselTextField()
+    {
+        getPeselTextField.setText("");
+    }
+
+
     public Sex getGetSex()
     {
         if (getManRadioButton.isSelected())
@@ -96,17 +112,23 @@ public class PDPanel extends JPanel {
         else return null;
     }
 
-    public void setGetSex(Sex sex)
+    public void setGetWomanRadioButton()
     {
-        if (sex.getSex().equals("K")){
             getWomanRadioButton.setSelected(true);
             getManRadioButton.setSelected(false);
-        }
-        else if (sex.getSex().equals("M")){
-            getWomanRadioButton.setSelected(false);
-            getManRadioButton.setSelected(true);
-        }
     }
+    public void setGetManRadioButton()
+    {
+        getWomanRadioButton.setSelected(true);
+        getManRadioButton.setSelected(false);
+    }
+    public void clearManWomanRadioButtons()
+    {
+        getWomanRadioButton.setSelected(false);
+        getManRadioButton.setSelected(false);
+    }
+
+
 
     public Insurance getGetInsurance()
     {
@@ -138,7 +160,12 @@ public class PDPanel extends JPanel {
                 iComboBox.setSelectedIndex(3);
         }
     }
+    public void clearGetInsurance(){
+        setGetInsurance(Insurance.NO_ANS);
+    }
 
-
+    public JButton getCpdButton(){
+        return cpdButton;
+    }
 
 }
