@@ -38,6 +38,7 @@ public class PDPanel extends JPanel {
         getInsLabel = new JLabel("Ubezpieczenie");
         ins_states = new String[]{Insurance.NO_ANS.getIns(), Insurance.NFZ.getIns(), Insurance.LACK.getIns(), Insurance.PRIVATE.getIns()};
         iComboBox = new JComboBox<>(ins_states);
+        iComboBox.setBackground(Color.lightGray);
 
         spdButton = new JButton("Zapisz");
         cpdButton = new JButton("Anuluj");
