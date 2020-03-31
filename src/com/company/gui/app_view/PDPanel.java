@@ -17,9 +17,9 @@ public class PDPanel extends JPanel {
 
 
 
-    public PDPanel(JFrame parentPanel){
+    public PDPanel(){
         this.setBackground(Color.lightGray);
-        this.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()*3/5));
+//        this.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()*3/5));
         this.setBorder(BorderFactory.createTitledBorder("Dane pacjenta: "));
 //###########################
 //
