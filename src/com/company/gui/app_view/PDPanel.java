@@ -1,30 +1,28 @@
 package com.company.gui.app_view;
 
 import com.company.gui.app_model.Insurance;
-import com.company.gui.app_model.PatientRecord;
+import com.company.gui.app_model.Sex;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PDPanel extends JPanel {
 
-    JLabel getNameLabel, getSurnameLabel, getPeselLabel, getSexLabel, getInsLabel;
-    JTextField getNameTextField, getSurnameTextField, getPeselTextField;
-    JRadioButton getWomanRadioButton, getManRadioButton;
-    String[] ins_states;
-    JComboBox<String> iComboBox;
-    JButton spdButton, cpdButton;
+    private JLabel getNameLabel, getSurnameLabel, getPeselLabel, getSexLabel, getInsLabel;
+    private JTextField getNameTextField, getSurnameTextField, getPeselTextField;
+    private JRadioButton getWomanRadioButton, getManRadioButton;
+    private String[] ins_states;
+    private JComboBox<String> iComboBox;
+    private JButton spdButton, cpdButton;
 
 
 
     public PDPanel(){
         this.setBackground(Color.lightGray);
-//        this.setPreferredSize(new Dimension(parentPanel.getWidth(), parentPanel.getHeight()*3/5));
         this.setBorder(BorderFactory.createTitledBorder("Dane pacjenta: "));
 //###########################
 //
         getNameLabel = new JLabel("Imię: ");
-//        getNameLabel.setSize(new Dimension(3,4));
         getNameTextField = new JTextField(10);
         getSurnameLabel = new JLabel("Nazwisko: ");
         getSurnameTextField = new JTextField(10);
@@ -34,11 +32,13 @@ public class PDPanel extends JPanel {
         getSexLabel = new JLabel("Płeć: ");
         getWomanRadioButton = new JRadioButton("Kobieta", false);
         getManRadioButton = new JRadioButton("Mężczyzna", false);
+        getManRadioButton.setBackground(Color.lightGray);
+        getWomanRadioButton.setBackground(Color.lightGray);
 
         getInsLabel = new JLabel("Ubezpieczenie");
         ins_states = new String[]{Insurance.NO_ANS.getIns(), Insurance.NFZ.getIns(), Insurance.LACK.getIns(), Insurance.PRIVATE.getIns()};
         iComboBox = new JComboBox<>(ins_states);
-        iComboBox.setBackground(Color.lightGray);
+
 
         spdButton = new JButton("Zapisz");
         cpdButton = new JButton("Anuluj");
@@ -57,4 +57,31 @@ public class PDPanel extends JPanel {
         patientDataLayout.setVerticalGroup(patientDataLayout.createSequentialGroup().addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getNameLabel).addComponent(getNameTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getSurnameLabel).addComponent(getSurnameTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getPeselLabel).addComponent(getPeselTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getSexLabel).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getWomanRadioButton).addComponent(getManRadioButton))).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getInsLabel).addComponent(iComboBox)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(spdButton).addComponent(cpdButton)));
 
     }
+    public String getGetNameTextField()
+    {
+        return getNameTextField.getText();
+    }
+    public String getGetSurnameTextField()
+    {
+        return getSurnameTextField.getText();
+    }
+    public Long getGetPeselTextField()
+    {
+        return Long.parseLong(getPeselTextField.getText());
+    }
+    public Sex getGetSex()
+    {
+        if (getManRadioButton.isSelected())
+            return Sex.M;
+        else if (getWomanRadioButton.isSelected())
+            return Sex.K;
+        else return null;
+    }
+//    public Insurance getGetInsurance()
+//    {
+////        if (getInsLabel == Insurance.getIns)
+//    }
+
+
+
 }

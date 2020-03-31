@@ -1,12 +1,24 @@
 package com.company.gui.app_controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.company.gui.app_model.PatientRegister;
+import com.company.gui.app_view.AppView;
+import com.company.gui.interfaces.ModelListener;
+import com.company.gui.interfaces.ViewListener;
 
-public class AppController implements ActionListener {
+import java.awt.event.ActionEvent;
+
+public class AppController implements ViewListener, ModelListener {
+    private AppView mView;
+
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void modelChanged(PatientRegister m) {
 
     }
+
+    @Override
+    public void setValue(int value) {
+
+    }
+
 }

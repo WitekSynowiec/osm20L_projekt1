@@ -29,8 +29,6 @@ public class TablePanel extends JPanel{
 
 
         pTable.setShowGrid(true);
-//        pTable.setShowHorizontalLines();
-        pTable.setGridColor(Color.BLACK);
 
         JScrollPane scrollPane = new JScrollPane(pTable);
         pTable.setFillsViewportHeight(true);

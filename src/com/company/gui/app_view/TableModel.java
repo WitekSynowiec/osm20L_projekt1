@@ -1,9 +1,7 @@
 package com.company.gui.app_view;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import com.company.Main;
-import com.company.gui.app_model.PatientRegister;
+
 import com.company.gui.app_model.Sex;
 import com.company.gui.app_model.Insurance;
 import com.company.gui.app_model.Examination;
@@ -19,8 +17,8 @@ public class TableModel extends AbstractTableModel{
     public TableModel(){
         super();
     }
-    public PatientRegister getPatientRegister(){
-        return Main.getRegister();
+    public void getPatientRegister(){
+//        return Main.getRegister();
     }
     @Override
     public int getRowCount() {
