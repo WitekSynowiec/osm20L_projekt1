@@ -57,18 +57,36 @@ public class PDPanel extends JPanel {
         patientDataLayout.setVerticalGroup(patientDataLayout.createSequentialGroup().addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getNameLabel).addComponent(getNameTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getSurnameLabel).addComponent(getSurnameTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getPeselLabel).addComponent(getPeselTextField)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getSexLabel).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getWomanRadioButton).addComponent(getManRadioButton))).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(getInsLabel).addComponent(iComboBox)).addGroup(patientDataLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(spdButton).addComponent(cpdButton)));
 
     }
+
     public String getGetNameTextField()
     {
         return getNameTextField.getText();
     }
+
+    public void setGetNameTextField(String text)
+    {
+        getNameTextField.setText(text);
+    }
+
     public String getGetSurnameTextField()
     {
         return getSurnameTextField.getText();
     }
+    public void setGetSurnameTextField(String text)
+    {
+        getSurnameTextField.setText(text);
+    }
+
     public Long getGetPeselTextField()
     {
         return Long.parseLong(getPeselTextField.getText());
     }
+
+    public void setGetPeselTextField(Long text)
+    {
+        getSurnameTextField.setText(text.toString());
+    }
+
     public Sex getGetSex()
     {
         if (getManRadioButton.isSelected())
@@ -77,10 +95,49 @@ public class PDPanel extends JPanel {
             return Sex.K;
         else return null;
     }
-//    public Insurance getGetInsurance()
-//    {
-////        if (getInsLabel == Insurance.getIns)
-//    }
+
+    public void setGetSex(Sex sex)
+    {
+        if (sex.getSex().equals("K")){
+            getWomanRadioButton.setSelected(true);
+            getManRadioButton.setSelected(false);
+        }
+        else if (sex.getSex().equals("M")){
+            getWomanRadioButton.setSelected(false);
+            getManRadioButton.setSelected(true);
+        }
+    }
+
+    public Insurance getGetInsurance()
+    {
+        switch (iComboBox.getSelectedIndex())
+        {
+            case 0:
+                return Insurance.NO_ANS;
+            case 1:
+                return Insurance.NFZ;
+            case 2:
+                return Insurance.LACK;
+            case 3:
+                return Insurance.PRIVATE;
+            default:
+                return null;
+        }
+    }
+    public void setGetInsurance(Insurance ins)
+    {
+        switch (ins.getIns())
+        {
+            case "":
+                iComboBox.setSelectedIndex(0);
+            case "NFZ":
+                iComboBox.setSelectedIndex(1);
+            case "prywatnie":
+                iComboBox.setSelectedIndex(2);
+            case "brak":
+                iComboBox.setSelectedIndex(3);
+        }
+    }
 
 
 
