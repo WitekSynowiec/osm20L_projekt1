@@ -2,26 +2,27 @@ package com.company.gui.app_view;
 
 import com.company.gui.app_controller.AppController;
 import com.company.gui.app_model.PatientRegister;
-import com.company.gui.interfaces.ModelListener;
-import com.company.gui.interfaces.ViewListener;
-import com.company.gui.interfaces.AppViewInterface;
+//import com.company.gui.interfaces.ModelListener;
+//import com.company.gui.interfaces.ViewListener;
+//import com.company.gui.interfaces.AppViewInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AppView extends JFrame implements ActionListener, AppViewInterface {
-    private ViewListener modelListener;
+public class AppView extends JFrame implements ActionListener {
+//    private ViewListener modelListener;
     private PDPanel patientDataPanel;
     private EPanel examinationPanel;
     private TablePanel tablePanel;
     private PatientRegister patientRegister = new PatientRegister();
 
+
     public AppView(){
         this.doGui();
         AppController ctrl = new AppController(this, patientRegister);
-        this.addListener(ctrl);
+//        this.addListener(ctrl);
 //        patientDataPanel.getCpdButton().addActionListener(ctrl);
     }
 
@@ -59,12 +60,11 @@ public class AppView extends JFrame implements ActionListener, AppViewInterface 
     }
     public void setController(ActionListener a)
     {
-//        leftPanel.pdPanel
     }
-    public void addListener(ViewListener listener)
-    {
-        this.modelListener = listener;
-    }
+//    public void addListener(ViewListener listener)
+//    {
+//        this.modelListener = listener;
+//    }
 
 
     @Override
