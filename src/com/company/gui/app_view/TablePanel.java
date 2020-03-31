@@ -1,7 +1,8 @@
 package com.company.gui.app_view;
 
+import com.company.gui.app_model.TableModel;
+
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class TablePanel extends JPanel{
@@ -10,11 +11,11 @@ public class TablePanel extends JPanel{
             {"Klara Synowiec","a","a","a","a"},
 
     };
-    JButton button1  = new JButton("Dodaj");
-    JButton button2  = new JButton("Usuń");
-    JPanel southPanel;
-    JTable pTable;
-    TableModel model;
+    private JButton button1  = new JButton("Dodaj");
+    private JButton button2  = new JButton("Usuń");
+    private JPanel southPanel;
+    private JTable pTable;
+    private TableModel model;
 
     public TablePanel(){
         setBackground(Color.red);
@@ -43,5 +44,16 @@ public class TablePanel extends JPanel{
         southPanel.add(button1);
         southPanel.add(button2);
         this.add(southPanel,BorderLayout.SOUTH);
+    }
+    public JButton getAddButton(){
+        return button1;
+    }
+    public JButton getDelButton(){
+        return button2;
+    }
+
+    public JTable getTable()
+    {
+        return pTable;
     }
 }

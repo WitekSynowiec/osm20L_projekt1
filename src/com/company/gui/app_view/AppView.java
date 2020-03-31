@@ -1,6 +1,8 @@
 package com.company.gui.app_view;
 
 import com.company.gui.app_controller.AppController;
+import com.company.gui.app_model.Examination;
+import com.company.gui.app_model.PatientRecord;
 import com.company.gui.app_model.PatientRegister;
 //import com.company.gui.interfaces.ModelListener;
 //import com.company.gui.interfaces.ViewListener;
@@ -11,19 +13,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AppView extends JFrame implements ActionListener {
+public class AppView extends JFrame {
 //    private ViewListener modelListener;
     private PDPanel patientDataPanel;
     private EPanel examinationPanel;
     private TablePanel tablePanel;
-    private PatientRegister patientRegister = new PatientRegister();
+    private PatientRegister patientRegister;
 
 
     public AppView(){
         this.doGui();
         AppController ctrl = new AppController(this, patientRegister);
-//        this.addListener(ctrl);
-//        patientDataPanel.getCpdButton().addActionListener(ctrl);
+        setListeners(ctrl);
     }
 
     private void doGui()
@@ -58,20 +59,30 @@ public class AppView extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setResizable(false);
     }
-    public void setController(ActionListener a)
+
+
+    public void setListeners(AppController ctrl)
     {
+        patientDataPanel.getCpdButton().addActionListener(ctrl);
+        patientDataPanel.getSpdButton().addActionListener(ctrl);
+        patientDataPanel.getGetManRadioButton().addActionListener(ctrl);
+        patientDataPanel.getGetWomanRadioButton().addActionListener(ctrl);
+        examinationPanel.getSpdButton().addActionListener(ctrl);
+        examinationPanel.getCpdButton().addActionListener(ctrl);
+        tablePanel.getAddButton().addActionListener(ctrl);
+        tablePanel.getDelButton().addActionListener(ctrl);
     }
-//    public void addListener(ViewListener listener)
-//    {
-//        this.modelListener = listener;
-//    }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-//        if (e.getSource()==patientDataPanel.bu)
-//            this.mListener.viewChanged(this,"Increment");
-//        else if (e.getSource()==this.mDecrementButton)
-//            this.mListener.viewChanged(this,"Decrement");
+    public PDPanel getPDPanel(){
+        return patientDataPanel;
+    }
+    public EPanel getEPanel(){
+        return examinationPanel;
+    }
+    public TablePanel getTPanel(){
+        return tablePanel;
+    }
+    public PatientRegister getPatientRegister(){
+        return patientRegister;
     }
 }

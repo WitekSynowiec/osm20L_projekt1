@@ -119,8 +119,8 @@ public class PDPanel extends JPanel {
     }
     public void setGetManRadioButton()
     {
-        getWomanRadioButton.setSelected(true);
-        getManRadioButton.setSelected(false);
+        getWomanRadioButton.setSelected(false);
+        getManRadioButton.setSelected(true);
     }
     public void clearManWomanRadioButtons()
     {
@@ -148,16 +148,19 @@ public class PDPanel extends JPanel {
     }
     public void setGetInsurance(Insurance ins)
     {
-        switch (ins.getIns())
-        {
+        switch (ins.getIns()) {
             case "":
                 iComboBox.setSelectedIndex(0);
+                break;
             case "NFZ":
                 iComboBox.setSelectedIndex(1);
-            case "prywatnie":
+                break;
+            case "PRIVATE":
                 iComboBox.setSelectedIndex(2);
-            case "brak":
+                break;
+            case "LACK":
                 iComboBox.setSelectedIndex(3);
+                break;
         }
     }
     public void clearGetInsurance(){
@@ -167,5 +170,16 @@ public class PDPanel extends JPanel {
     public JButton getCpdButton(){
         return cpdButton;
     }
+    public JButton getSpdButton(){
+        return spdButton;
+    }
+    public JRadioButton getGetManRadioButton(){
+        return getManRadioButton;
+    }
+    public JRadioButton getGetWomanRadioButton(){
+        return getWomanRadioButton;
+    }
+
+
 
 }
