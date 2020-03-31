@@ -82,7 +82,7 @@ public class AppView extends JFrame {
     public TablePanel getTPanel(){
         return tablePanel;
     }
-    public PatientRegister getPatientRegister(){
-        return patientRegister;
-    }
+//    public static PatientRegister getPatientRegister(){
+//        return patientRegister;
+//    }
 }

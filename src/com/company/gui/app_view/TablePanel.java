@@ -1,6 +1,8 @@
 package com.company.gui.app_view;
 
-import com.company.gui.app_model.TableModel;
+//import com.company.gui.app_model.TableModel;
+
+import com.company.gui.app_model.PatientRegister;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +17,7 @@ public class TablePanel extends JPanel{
     private JButton button2  = new JButton("Usuń");
     private JPanel southPanel;
     private JTable pTable;
-    private TableModel model;
+    private PatientRegister model;
 
     public TablePanel(){
         setBackground(Color.red);
@@ -25,7 +27,7 @@ public class TablePanel extends JPanel{
         this.setBorder(BorderFactory.createTitledBorder("Lista Pacjentów: "));
 
         southPanel = new JPanel();
-        model = new TableModel();
+        model = new PatientRegister();
         pTable = new JTable(model);
 
 
