@@ -33,7 +33,7 @@ public class AppView extends JFrame {
 
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
-        tablePanel = new TablePanel();
+        tablePanel = new TablePanel(patientRegister);
         patientRegister =  new PatientRegister();
 
         this.setLayout(new GridBagLayout());
@@ -72,7 +72,9 @@ public class AppView extends JFrame {
         tablePanel.getAddButton().addActionListener(ctrl);
         tablePanel.getDelButton().addActionListener(ctrl);
     }
-
+    public PatientRegister getPatientRegister(){
+        return patientRegister;
+    }
     public PDPanel getPDPanel(){
         return patientDataPanel;
     }

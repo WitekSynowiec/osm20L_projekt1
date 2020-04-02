@@ -22,16 +22,15 @@ public class AppController implements ActionListener {
         Object source = e.getSource();
         if (source == mView.getPDPanel().getCpdButton())
         {
-            mView.getPDPanel().clearManWomanRadioButtons();
-            mView.getPDPanel().clearGetInsurance();
-            mView.getPDPanel().clearGetPeselTextField();
-            mView.getPDPanel().clearGetSurnameTextField();
-            mView.getPDPanel().clearGetNameTextField();
-            mView.getPDPanel().clearGetPeselTextField();
+            mView.getPDPanel().clearAllFields();
         }
         if (source == mView.getPDPanel().getSpdButton())
         {
-            pRegister.add(new PatientRecord(mView.getPDPanel().getGetNameTextField(),mView.getPDPanel().getGetSurnameTextField(),mView.getPDPanel().getGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
+
+//            PatientRecord newRecord = new PatientRecord(mView.getPDPanel().getGetNameTextField(),mView.getPDPanel().getGetSurnameTextField(),mView.getPDPanel().getGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance());
+//            pRegister.add(newRecord);
+//            mView.getTPanel().getTableModel().addRow(pRegister.getRecord(pRegister.getSize()));
+
 
         }
         if (source == mView.getPDPanel().getGetManRadioButton())
@@ -41,6 +40,11 @@ public class AppController implements ActionListener {
         if (source == mView.getPDPanel().getGetWomanRadioButton())
         {
             mView.getPDPanel().setGetWomanRadioButton();
+        }
+
+        if (source == mView.getEPanel().getCpdButton())
+        {
+            mView.getEPanel().clearAllFields();
         }
 
     }

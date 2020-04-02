@@ -180,6 +180,15 @@ public class PDPanel extends JPanel {
         return getWomanRadioButton;
     }
 
+    public void clearAllFields()
+    {
+        clearGetPeselTextField();
+        clearGetNameTextField();
+        clearGetSurnameTextField();
+        clearGetInsurance();
+        clearManWomanRadioButtons();
+    }
+
 
 
 }
