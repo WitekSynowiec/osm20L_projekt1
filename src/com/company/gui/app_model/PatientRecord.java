@@ -35,7 +35,7 @@ public class PatientRecord {
         return fullName.getFullName();
     }
 
-    public long getPesel() {
+    public Long getPesel() {
         return pesel;
     }
 

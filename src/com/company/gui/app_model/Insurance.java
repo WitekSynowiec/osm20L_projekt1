@@ -13,4 +13,8 @@ public enum Insurance {
     public  String getIns(){
         return ins;
     }
+
+    public void setIns(String ins) {
+        this.ins = ins;
+    }
 }
