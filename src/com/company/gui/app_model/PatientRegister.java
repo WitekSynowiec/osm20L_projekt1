@@ -16,6 +16,10 @@ public class PatientRegister {
     {
         patientDatabase.add(record);
     }
+    public void remove(int i)
+    {
+        patientDatabase.remove(i);
+    }
     public ArrayList<PatientRecord> get(){
         return patientDatabase;
     }

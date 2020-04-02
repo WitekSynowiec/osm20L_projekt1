@@ -31,10 +31,11 @@ public class AppView extends JFrame {
         getContentPane().setBackground(Color.lightGray);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        patientRegister =  new PatientRegister();
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
         tablePanel = new TablePanel(patientRegister);
-        patientRegister =  new PatientRegister();
+
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

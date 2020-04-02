@@ -15,7 +15,6 @@ public class TableModel extends AbstractTableModel {
     private String[] colNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
     private Class[] colTypes = {String.class, Sex.class, Long.class, Insurance.class,Examination.class};
     private Color gridColor = null;
-    private int rowCount = 0;
 
     public TableModel(PatientRegister t){
         super();
@@ -24,13 +23,18 @@ public class TableModel extends AbstractTableModel {
 
     public void addRow(PatientRecord do1) {
         register.add(do1);
-        rowCount++;
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+        fireTableDataChanged();
+    }
+
+    public void removeRow(int i){
+        register.remove(i);
+        fireTableRowsDeleted(i,i);
+        fireTableDataChanged();
     }
     @Override
     public int getRowCount(){
-
-        return rowCount;
+        return register.getSize();
     }
 
     @Override
@@ -40,7 +44,20 @@ public class TableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return null;
+        switch (columnIndex) {
+            case 0:
+                return register.getRecord(rowIndex).getFullName();
+            case 1:
+                return register.getRecord(rowIndex).getSex();
+            case 2:
+                return register.getRecord(rowIndex).getPesel();
+            case 3:
+                return register.getRecord(rowIndex).getIns();
+            case 4:
+                return register.getRecord(rowIndex).getExamination();
+            default:
+                return 0;
+        }
     }
     @Override
     public String getColumnName(int index) {
