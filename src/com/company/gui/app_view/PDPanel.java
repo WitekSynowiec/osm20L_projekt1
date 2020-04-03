@@ -58,41 +58,52 @@ public class PDPanel extends JPanel {
 
     }
 
-    public String getGetNameTextField()
+    public JTextField getGetNameTextField(){
+        return getNameTextField;
+    }
+
+    public String getTextGetNameTextField()
     {
         return getNameTextField.getText();
     }
 
-    public void setGetNameTextField(String text)
+    public void setTextGetNameTextField(String text)
     {
         getNameTextField.setText(text);
     }
 
     public void clearGetNameTextField(){
-        setGetNameTextField("");
+        setTextGetNameTextField("");
     }
 
 
-    public String getGetSurnameTextField()
+    public JTextField getGetSurnameTextField(){
+        return getSurnameTextField;
+    }
+    public String getTextGetSurnameTextField()
     {
         return getSurnameTextField.getText();
     }
 
-    public void setGetSurnameTextField(String text)
+    public void setTextGetSurnameTextField(String text)
     {
         getSurnameTextField.setText(text);
     }
 
     public void clearGetSurnameTextField(){
-        setGetSurnameTextField("");
+        setTextGetSurnameTextField("");
     }
 
-    public Long getGetPeselTextField()
+    public JTextField getGetPeselTextField(){
+        return getPeselTextField;
+    }
+
+    public Long getTextGetPeselTextField()
     {
         return Long.parseLong(getPeselTextField.getText());
     }
 
-    public void setGetPeselTextField(Long text)
+    public void setTextGetPeselTextField(Long text)
     {
         getSurnameTextField.setText(text.toString());
     }
@@ -178,6 +189,15 @@ public class PDPanel extends JPanel {
     }
     public JRadioButton getGetWomanRadioButton(){
         return getWomanRadioButton;
+    }
+
+    public void clearAllFields()
+    {
+        clearGetPeselTextField();
+        clearGetNameTextField();
+        clearGetSurnameTextField();
+        clearGetInsurance();
+        clearManWomanRadioButtons();
     }
 
 

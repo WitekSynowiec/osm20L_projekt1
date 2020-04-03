@@ -1,5 +1,8 @@
 package com.company.gui.app_view;
 
+//import com.company.gui.app_model.TableModel;
+
+import com.company.gui.app_model.PatientRegister;
 import com.company.gui.app_model.TableModel;
 
 import javax.swing.*;
@@ -17,7 +20,7 @@ public class TablePanel extends JPanel{
     private JTable pTable;
     private TableModel model;
 
-    public TablePanel(){
+    public TablePanel(PatientRegister register){
         setBackground(Color.red);
         this.setBorder(BorderFactory.createTitledBorder("Lista Pacjentów: "));
 
@@ -25,7 +28,7 @@ public class TablePanel extends JPanel{
         this.setBorder(BorderFactory.createTitledBorder("Lista Pacjentów: "));
 
         southPanel = new JPanel();
-        model = new TableModel();
+        model = new TableModel(register);
         pTable = new JTable(model);
 
 
@@ -55,5 +58,9 @@ public class TablePanel extends JPanel{
     public JTable getTable()
     {
         return pTable;
+    }
+    public TableModel getTableModel()
+    {
+        return model;
     }
 }

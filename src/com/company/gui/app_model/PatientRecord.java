@@ -31,7 +31,11 @@ public class PatientRecord {
         this.fullName.setValue2(surname);
     }
 
-    public long getPesel() {
+    public StringBuilder getFullName(){
+        return fullName.getFullName();
+    }
+
+    public Long getPesel() {
         return pesel;
     }
 
@@ -47,8 +51,8 @@ public class PatientRecord {
         this.sex = sex;
     }
 
-    public Insurance getIns() {
-        return ins;
+    public String getIns() {
+        return ins.getIns();
     }
 
     public void setIns(Insurance ins) {

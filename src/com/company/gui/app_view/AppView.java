@@ -31,10 +31,11 @@ public class AppView extends JFrame {
         getContentPane().setBackground(Color.lightGray);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        patientRegister =  new PatientRegister();
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
-        tablePanel = new TablePanel();
-        patientRegister =  new PatientRegister();
+        tablePanel = new TablePanel(patientRegister);
+
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -72,7 +73,9 @@ public class AppView extends JFrame {
         tablePanel.getAddButton().addActionListener(ctrl);
         tablePanel.getDelButton().addActionListener(ctrl);
     }
-
+    public PatientRegister getPatientRegister(){
+        return patientRegister;
+    }
     public PDPanel getPDPanel(){
         return patientDataPanel;
     }
@@ -82,7 +85,7 @@ public class AppView extends JFrame {
     public TablePanel getTPanel(){
         return tablePanel;
     }
-    public PatientRegister getPatientRegister(){
-        return patientRegister;
-    }
+//    public static PatientRegister getPatientRegister(){
+//        return patientRegister;
+//    }
 }

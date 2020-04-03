@@ -7,41 +7,68 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EPanel extends JPanel{
-    private JLabel label1, label2, label3, label4;
-    private JTextField textField1, textField2, textField3, textField4;
-    private JButton button1, button2;
+    private JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
+    private JTextField glucoseTextField, amylaseTextField, phosphateTextField;
+    private JButton seButton, ceButton;
     private JDateChooser dateChooser;
     public EPanel(){
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createTitledBorder("Badanie: "));
 
-        label1 = new JLabel("Data: ");
-        label2 = new JLabel("Stężenie glukozy: ");
-        label3 = new JLabel("Stężenie amylazy: ");
-        label4 = new JLabel("Stężenie fosforanów: ");
+        dateLabel = new JLabel("Data: ");
+        glucoseLabel = new JLabel("Stężenie glukozy: ");
+        amylaseLabel = new JLabel("Stężenie amylazy: ");
+        phosphateLabel = new JLabel("Stężenie fosforanów: ");
 
-        textField1 = new JTextField(3);
-        textField2 = new JTextField(3);
-        textField3 = new JTextField(3);
-        textField4 = new JTextField(3);
+        glucoseTextField = new JTextField(3);
+        amylaseTextField = new JTextField(3);
+        phosphateTextField = new JTextField(3);
 
         dateChooser = new JDateChooser();
 
-        button1 = new JButton("Zapisz");
-        button2 = new JButton("Anuluj");
+        seButton = new JButton("Zapisz");
+        ceButton = new JButton("Anuluj");
 
         GroupLayout examinationLayout = new GroupLayout(this);
         this.setLayout(examinationLayout);
         examinationLayout.setAutoCreateGaps(true);
 
-        examinationLayout.setHorizontalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.LEADING).addComponent(label1).addComponent(label2).addComponent(label3).addComponent(label4).addGroup(examinationLayout.createSequentialGroup().addComponent(button1).addComponent(button2))).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(dateChooser).addComponent(textField1).addComponent(textField2).addComponent(textField3)));
-        examinationLayout.setVerticalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.BASELINE).addComponent(label1).addComponent(dateChooser)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label2).addComponent(textField1)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label3).addComponent(textField2)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(label4).addComponent(textField3)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(button1).addComponent(button2))));
+        examinationLayout.setHorizontalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.LEADING).addComponent(dateLabel).addComponent(glucoseLabel).addComponent(amylaseLabel).addComponent(phosphateLabel).addGroup(examinationLayout.createSequentialGroup().addComponent(seButton).addComponent(ceButton))).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(dateChooser).addComponent(glucoseTextField).addComponent(amylaseTextField).addComponent(phosphateTextField)));
+        examinationLayout.setVerticalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.BASELINE).addComponent(dateLabel).addComponent(dateChooser)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(glucoseLabel).addComponent(glucoseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(amylaseLabel).addComponent(amylaseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(phosphateLabel).addComponent(phosphateTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(seButton).addComponent(ceButton))));
 
     }
     public JButton getSpdButton(){
-        return button1;
+        return seButton;
     }
     public JButton getCpdButton(){
-        return button2;
+        return ceButton;
     }
+
+    public void setGlucoseTextField(String t){
+        glucoseTextField.setText(t);
+    }
+    public void clearGlucoseTextField(){
+        setGlucoseTextField("");
+    }
+    public void setAmylaseTextField(String t){
+        amylaseTextField.setText(t);
+    }
+    public void clearAmylaseTextField(){
+        setAmylaseTextField("");
+    }
+    public void setPhosphateTextField(String t){
+        phosphateTextField.setText(t);
+    }
+    public void clearPhosphateTextField(){
+        setPhosphateTextField("");
+    }
+
+    public void clearAllFields(){
+        dateChooser.setCalendar(null);
+        clearAmylaseTextField();
+        clearGlucoseTextField();
+        clearPhosphateTextField();
+    }
+
+
 }
