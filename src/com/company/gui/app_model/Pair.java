@@ -1,8 +1,8 @@
 package com.company.gui.app_model;
 
 public class Pair {
-    private String value1;
-    private String value2;
+    protected String value1;
+    protected String value2;
     public Pair(String a, String b){
         value1 = a;
         value2 = b;

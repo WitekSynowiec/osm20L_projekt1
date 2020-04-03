@@ -18,19 +18,22 @@ public class AppController implements ActionListener, ListSelectionListener {
     public AppController (AppView appView, PatientRegister patientRegister){
         this.mView = appView;
         this.pRegister = patientRegister;
+        mView.getPDPanel().enableChange(false);
+        mView.getTPanel().getTable().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        System.out.println(mView.getTPanel().getTableModel().getRowCount());
         if (source == mView.getPDPanel().getSpdButton())
         {
             if (validatePD()) {
-                mView.getPDPanel().setTextGetNameTextField(capitalize(mView.getPDPanel().getTextGetNameTextField()));
-                mView.getPDPanel().setTextGetSurnameTextField(capitalize(mView.getPDPanel().getTextGetSurnameTextField()));
+                mView.getTPanel().getTable().clearSelection();
                 mView.getTPanel().getTableModel().addRow(new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
                 mView.getPDPanel().clearAllFields();
+                mView.getPDPanel().enableChange(false);
             }
         }
         if (source == mView.getPDPanel().getCpdButton())
@@ -55,10 +58,17 @@ public class AppController implements ActionListener, ListSelectionListener {
             mView.getTPanel().getTableModel().removeRow(mView.getTPanel().getTable().getSelectedRow());
         }
 
+        if (source == mView.getTPanel().getAddButton())
+        {
+            mView.getTPanel().getTable().clearSelection();
+            mView.getPDPanel().clearAllFields();
+            mView.getPDPanel().enableChange(true);
+        }
+
     }
 
     private boolean validatePD(){
-        return !mView.getPDPanel().getTextGetNameTextField().isEmpty() && !mView.getPDPanel().getTextGetSurnameTextField().isEmpty() && !mView.getPDPanel().getTextGetPeselTextField().toString().isEmpty() && (mView.getPDPanel().getGetManRadioButton().isSelected() || mView.getPDPanel().getGetWomanRadioButton().isSelected()) && !mView.getPDPanel().getGetInsurance().getIns().equals("");
+        return !mView.getPDPanel().getTextGetNameTextField().isEmpty() && !mView.getPDPanel().getTextGetSurnameTextField().isEmpty() && !mView.getPDPanel().getTextGetPeselTextField().toString().isEmpty() && (mView.getPDPanel().getGetManRadioButton().isSelected() || mView.getPDPanel().getGetWomanRadioButton().isSelected()) && !mView.getPDPanel().getGetInsurance().getIns().equals("") && mView.getPDPanel().getTextGetPeselTextField()<99999999999L&&mView.getPDPanel().getTextGetPeselTextField()>10000000000L;
     }
 
 
@@ -73,32 +83,16 @@ public class AppController implements ActionListener, ListSelectionListener {
         return true;
     }
 
-    private String capitalize(String str) {
-        if(str == null || str.isEmpty()) {
-            return str;
-        }
-        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
-    }
+
+
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-//        System.out.println(mView.getTPanel().getTable().getSelectedRow());
-//        if (e.getSource() == mView.getTPanel().getTable().getSelectionModel() && mView.getTPanel().getTable().getRowSelectionAllowed()) {
-//            int first = e.getFirstIndex();
-//            int last = e.getLastIndex();
-//        } else if (e.getSource() == mView.getTPanel().getTable().getColumnModel().getSelectionModel()
-//                && mView.getTPanel().getTable().getColumnSelectionAllowed()) {
-//            int first = e.getFirstIndex();
-//            int last = e.getLastIndex();
-//        }
-//        if (e.getValueIsAdjusting()) {
-//            System.out.println("The mouse button has not yet been released");
-//        }
-//        mView.getPDPanel().getGetNameTextField().setText(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getName());
-//        mView.getPDPanel().getGetSurnameTextField().setText(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSurname());
-//        mView.getPDPanel().getGetPeselTextField().setText(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getPesel().toString());
-//        mView.getPDPanel().getGetWomanRadioButton().setSelected(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSex().equals(Sex.K));
-//        mView.getPDPanel().getGetManRadioButton().setSelected(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSex().equals(Sex.M));
-//        mView.getPDPanel().getGetInsurance().setIns(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getIns());
+        mView.getPDPanel().enableChange(true);
+        mView.getPDPanel().setTextGetNameTextField(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getName());
+        mView.getPDPanel().setTextGetSurnameTextField(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSurname());
+        mView.getPDPanel().setTextGetPeselTextField(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getPesel());
+        mView.getPDPanel().setGetInsurance(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getIns());
+        mView.getPDPanel().setSexRadioButton(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSex());
     }
 }

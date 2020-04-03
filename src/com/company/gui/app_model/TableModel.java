@@ -24,13 +24,17 @@ public class TableModel extends AbstractTableModel {
     public void addRow(PatientRecord do1) {
         register.add(do1);
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
-        fireTableDataChanged();
+//        fireTableDataChanged();
     }
 
     public void removeRow(int i){
         register.remove(i);
         fireTableRowsDeleted(i,i);
-        fireTableDataChanged();
+//        fireTableDataChanged();
+    }
+
+    public void clearSelection(){
+        System.out.println("ALLA");
     }
     @Override
     public int getRowCount(){
@@ -52,7 +56,7 @@ public class TableModel extends AbstractTableModel {
             case 2:
                 return register.getRecord(rowIndex).getPesel();
             case 3:
-                return register.getRecord(rowIndex).getIns();
+                return register.getRecord(rowIndex).getIns().getIns();
             case 4:
                 return register.getRecord(rowIndex).getExamination();
             default:

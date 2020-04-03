@@ -51,8 +51,12 @@ public class PatientRecord {
         this.sex = sex;
     }
 
-    public String getIns() {
+    public String getInsString(){
         return ins.getIns();
+    }
+
+    public Insurance getIns() {
+        return ins;
     }
 
     public void setIns(Insurance ins) {
