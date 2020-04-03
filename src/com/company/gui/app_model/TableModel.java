@@ -28,7 +28,7 @@ public class TableModel extends AbstractTableModel {
         System.out.println("register.getSize(): "+register.getSize());
         System.out.println("getRowCount: "+getRowCount());
 
-        fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+        fireTableRowsUpdated(0,getRowCount());
 
     }
 
@@ -36,8 +36,11 @@ public class TableModel extends AbstractTableModel {
 
         if (!register.isEmpty())
         {
+            System.out.println("Do remove row przekazano");
+            System.out.println(i);
+            fireTableRowsUpdated(0,getRowCount());
             register.remove(i);
-//            fireTableRowsDeleted(i,i);
+            System.out.println(getRowCount());
         }
 
 
