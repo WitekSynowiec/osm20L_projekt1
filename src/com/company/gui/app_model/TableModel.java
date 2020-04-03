@@ -37,7 +37,7 @@ public class TableModel extends AbstractTableModel {
         if (!register.isEmpty())
         {
             register.remove(i);
-            fireTableRowsDeleted(i,i);
+//            fireTableRowsDeleted(i,i);
         }
 
 
