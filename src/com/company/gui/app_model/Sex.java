@@ -10,4 +10,7 @@ public enum Sex {
     public  String getSex(){
         return sex;
     }
+    public boolean equals(Sex s){
+        return sex.equals(s.getSex());
+    }
 }

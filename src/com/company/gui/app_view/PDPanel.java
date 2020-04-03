@@ -105,7 +105,7 @@ public class PDPanel extends JPanel {
 
     public void setTextGetPeselTextField(Long text)
     {
-        getSurnameTextField.setText(text.toString());
+        getPeselTextField.setText(text.toString());
     }
 
     public void clearGetPeselTextField()
@@ -121,6 +121,14 @@ public class PDPanel extends JPanel {
         else if (getWomanRadioButton.isSelected())
             return Sex.K;
         else return null;
+    }
+
+    public void setSexRadioButton(Sex sex)
+    {
+        if (sex.equals(Sex.K))
+            setGetWomanRadioButton();
+        else if (sex.equals(Sex.M))
+            setGetManRadioButton();
     }
 
     public void setGetWomanRadioButton()
@@ -141,6 +149,10 @@ public class PDPanel extends JPanel {
 
 
 
+    public JComboBox getGetInsComboBox()
+    {
+        return iComboBox;
+    }
     public Insurance getGetInsurance()
     {
         switch (iComboBox.getSelectedIndex())
@@ -159,17 +171,17 @@ public class PDPanel extends JPanel {
     }
     public void setGetInsurance(Insurance ins)
     {
-        switch (ins.getIns()) {
-            case "":
+        switch (ins) {
+            case NO_ANS:
                 iComboBox.setSelectedIndex(0);
                 break;
-            case "NFZ":
+            case NFZ:
                 iComboBox.setSelectedIndex(1);
                 break;
-            case "PRIVATE":
+            case LACK:
                 iComboBox.setSelectedIndex(2);
                 break;
-            case "LACK":
+            case PRIVATE:
                 iComboBox.setSelectedIndex(3);
                 break;
         }
@@ -191,6 +203,15 @@ public class PDPanel extends JPanel {
         return getWomanRadioButton;
     }
 
+    public void enableChange(boolean b)
+    {
+        getNameTextField.setEditable(b);
+        getSurnameTextField.setEditable(b);
+        getManRadioButton.setEnabled(b);
+        getWomanRadioButton.setEnabled(b);
+        getPeselTextField.setEditable(b);
+        iComboBox.setEnabled(b);
+    }
     public void clearAllFields()
     {
         clearGetPeselTextField();
