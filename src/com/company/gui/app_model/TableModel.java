@@ -1,5 +1,6 @@
 package com.company.gui.app_model;
 
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.company.Main;
@@ -18,24 +19,40 @@ public class TableModel extends AbstractTableModel {
 
     public TableModel(PatientRegister t){
         super();
+
         register = t;
     }
 
     public void addRow(PatientRecord do1) {
         register.add(do1);
+        System.out.println("register.getSize(): "+register.getSize());
+        System.out.println("getRowCount: "+getRowCount());
+
         fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
-//        fireTableDataChanged();
+
     }
 
     public void removeRow(int i){
-        register.remove(i);
-        fireTableRowsDeleted(i,i);
-//        fireTableDataChanged();
+
+        if (!register.isEmpty())
+        {
+            register.remove(i);
+            fireTableRowsDeleted(i,i);
+        }
+
+
+
+    }
+    public TableModelListener addTableModelListener()
+    {
+        return addTableModelListener();
     }
 
-    public void clearSelection(){
-        System.out.println("ALLA");
+    public void insertData(PatientRegister t)
+    {
+        register = t;
     }
+
     @Override
     public int getRowCount(){
         return register.getSize();

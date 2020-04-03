@@ -73,6 +73,7 @@ public class AppView extends JFrame {
         tablePanel.getAddButton().addActionListener(ctrl);
         tablePanel.getDelButton().addActionListener(ctrl);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(ctrl);
+        tablePanel.getTable().getModel().addTableModelListener(ctrl);
     }
     public PatientRegister getPatientRegister(){
         return patientRegister;

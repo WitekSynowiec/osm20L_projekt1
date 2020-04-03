@@ -34,6 +34,9 @@ public class PatientRegister {
     public int getSize(){
         return patientDatabase.size();
     }
-
+    public boolean isEmpty()
+    {
+        return patientDatabase.isEmpty();
+    }
 
 }

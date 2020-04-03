@@ -7,11 +7,13 @@ import com.company.Main;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class AppController implements ActionListener, ListSelectionListener {
+public class AppController implements ActionListener, ListSelectionListener, TableModelListener {
     private AppView mView;
     private PatientRegister	pRegister;
 
@@ -26,14 +28,16 @@ public class AppController implements ActionListener, ListSelectionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        System.out.println(mView.getTPanel().getTableModel().getRowCount());
+        System.out.println("jest w tablicy: "+mView.getTPanel().getTableModel().getRowCount());
+        System.out.println("jest w tablicydoubled: "+pRegister.getSize());
         if (source == mView.getPDPanel().getSpdButton())
         {
             if (validatePD()) {
-                mView.getTPanel().getTable().clearSelection();
+//                mView.getTPanel().getTable().clearSelection();
                 mView.getTPanel().getTableModel().addRow(new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
                 mView.getPDPanel().clearAllFields();
                 mView.getPDPanel().enableChange(false);
+                System.out.println("jest w tablicy2: "+mView.getTPanel().getTableModel().getRowCount());
             }
         }
         if (source == mView.getPDPanel().getCpdButton())
@@ -55,12 +59,20 @@ public class AppController implements ActionListener, ListSelectionListener {
         }
 
         if (source == mView.getTPanel().getDelButton()){
-            mView.getTPanel().getTableModel().removeRow(mView.getTPanel().getTable().getSelectedRow());
+
+            int selectedRow = mView.getTPanel().getTable().getSelectedRow();
+            System.out.println("mView.getTPanel().getTable().getSelectedRow(): "+mView.getTPanel().getTable().getSelectedRow());
+            mView.getTPanel().getTableModel().removeRow(selectedRow);
+            mView.getPDPanel().clearAllFields();
+//            mView.getTPanel().getTable().clearSelection();
+//            mView.getTPanel().getTable().getSelectionModel().clearSelection();
+//            mView.getTPanel().getTableModel().clearSelection();
+
         }
 
         if (source == mView.getTPanel().getAddButton())
         {
-            mView.getTPanel().getTable().clearSelection();
+//            mView.getTPanel().getTable().clearSelection();
             mView.getPDPanel().clearAllFields();
             mView.getPDPanel().enableChange(true);
         }
@@ -94,5 +106,11 @@ public class AppController implements ActionListener, ListSelectionListener {
         mView.getPDPanel().setTextGetPeselTextField(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getPesel());
         mView.getPDPanel().setGetInsurance(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getIns());
         mView.getPDPanel().setSexRadioButton(pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getSex());
+    }
+
+    @Override
+    public void tableChanged(TableModelEvent e) {
+        mView.getTPanel().getTableModel().insertData(pRegister);
+
     }
 }
