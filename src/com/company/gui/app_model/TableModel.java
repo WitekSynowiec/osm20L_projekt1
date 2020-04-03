@@ -27,7 +27,7 @@ public class TableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount(){
-        return PatientRegister.getRowCount();
+        return 0;
     }
 
     @Override

@@ -30,7 +30,6 @@ public class AppController implements ActionListener {
             mView.getPDPanel().clearGetPeselTextField();
         }
         if (source == mView.getPDPanel().getSpdButton())
-        {
             PatientRegister.add(new PatientRecord(mView.getPDPanel().getGetNameTextField(),mView.getPDPanel().getGetSurnameTextField(),mView.getPDPanel().getGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
 
 
