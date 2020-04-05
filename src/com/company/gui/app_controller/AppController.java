@@ -16,14 +16,24 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
     private PatientRegister	pRegister;
 
     private boolean validatePD(){
-
+        String peselsen ="";
+        if(pRegister.getSize()==0){
+            peselsen = "00000100000";
+        }else{
+            try {
+                peselsen = pRegister.getRecord(mView.getTPanel().getTable().getSelectedRow()).getPesel();
+            }catch (Exception e){
+                peselsen = "000000100000";
+            }
+        }
         if(!pRegister.validate(
                 mView.getPDPanel().getTextGetNameTextField(),
                 mView.getPDPanel().getTextGetSurnameTextField(),
                 mView.getPDPanel().getTextGetPeselTextField(),
                 mView.getPDPanel().getGetManRadioButton(),
                 mView.getPDPanel().getGetWomanRadioButton(),
-                mView.getPDPanel().getGetInsurance().getIns())){
+                mView.getPDPanel().getGetInsurance().getIns(),
+                peselsen)){
             System.out.println("Walidacja nie udana");
             return false;
         }
@@ -60,23 +70,47 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
         int selectedRow = mView.getTPanel().getTable().getSelectedRow();
         TableModel model = mView.getTPanel().getTableModel();
         Object source = e.getSource();
+        mView.getTPanel().getTable().setColumnSelectionAllowed(false);
+        mView.getTPanel().getTable().setCellSelectionEnabled(false);
+        mView.getTPanel().getTable().setRowSelectionAllowed(true);
 
         if (source == mView.getPDPanel().getSpdButton())
         {
             if (validatePD()) {
-                pRegister.add(new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
-                model.fireTableRowsUpdated(0,model.getRowCount()-1);
-                mView.getPDPanel().clearAllFields();
-                mView.getPDPanel().enableChange(false);
-                mView.getEPanel().enableChange(false);
+                if(selectedRow == -1){
+                    pRegister.add(new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance()));
+                    model.fireTableRowsUpdated(0,model.getRowCount()-1);
+                    mView.getPDPanel().clearAllFields();
+                    mView.getPDPanel().enableChange(false);
+                    mView.getEPanel().enableChange(false);
+                }else{
+                    pRegister.getRecord(selectedRow).setName(mView.getPDPanel().getTextGetNameTextField());
+                    pRegister.getRecord(selectedRow).setSurname(mView.getPDPanel().getTextGetSurnameTextField());
+                    pRegister.getRecord(selectedRow).setPesel(mView.getPDPanel().getTextGetPeselTextField());
+                    pRegister.getRecord(selectedRow).setSex(mView.getPDPanel().getGetSex());
+                    pRegister.getRecord(selectedRow).setIns(mView.getPDPanel().getGetInsurance());
+                    model.fireTableRowsUpdated(0,model.getRowCount()-1);
+                    mView.getPDPanel().clearAllFields();
+                    mView.getPDPanel().enableChange(false);
+                    mView.getEPanel().enableChange(false);
+                }
+                try {
+                    mView.getTPanel().getTable().clearSelection();
+                }
+                catch(Exception x){
+                    System.out.println("Ominieto bląd");
+                }
             }
-            mView.getTPanel().getTable().getSelectionModel().removeListSelectionListener(this);
-            mView.getTPanel().getTable().clearSelection();
-            mView.getTPanel().getTable().getSelectionModel().addListSelectionListener(this);
         }
         if (source == mView.getPDPanel().getCpdButton())
         {
             mView.getPDPanel().clearAllFields();
+            try {
+                mView.getTPanel().getTable().clearSelection();
+            }
+            catch(Exception x){
+                System.out.println("Ominieto bląd");
+            }
         }
         if (source == mView.getPDPanel().getGetManRadioButton())
         {
@@ -94,6 +128,12 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 pRegister.remove(selectedRow);
             }
             mView.getPDPanel().clearAllFields();
+            try {
+                mView.getTPanel().getTable().clearSelection();
+            }
+            catch(Exception x){
+                System.out.println("Ominieto bląd");
+            }
         }
 
         if (source == mView.getEPanel().getSeButton())
@@ -105,12 +145,12 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 mView.getPDPanel().clearAllFields();
                 mView.getEPanel().enableChange(false);
                 mView.getPDPanel().enableChange(false);
-            }
-            try {
-                mView.getTPanel().getTable().clearSelection();
-            }
-            catch(Exception x){
-                System.out.println("Ominieto bląd");
+                try {
+                    mView.getTPanel().getTable().clearSelection();
+                }
+                catch(Exception x){
+                    System.out.println("Ominieto bląd");
+                }
             }
 
         }
@@ -125,7 +165,13 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             mView.getPDPanel().clearAllFields();
             mView.getEPanel().clearAllFields();
             mView.getPDPanel().enableChange(true);
-            mView.getEPanel().enableChange(true);
+            mView.getEPanel().enableChange(false);
+            try {
+                mView.getTPanel().getTable().clearSelection();
+            }
+            catch(Exception x){
+                System.out.println("Ominieto bląd");
+            }
         }
 
     }

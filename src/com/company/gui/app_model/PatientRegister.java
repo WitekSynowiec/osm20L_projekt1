@@ -64,9 +64,12 @@ public class PatientRegister {
         return patientDatabase.contains(record);
     }
 
-    public boolean containsPesel(String pesel){
+    public boolean containsPesel(String pesel, String srpesel){
         for(int i=0;i<getSize();i++){
             if(pesel.equals(getRecord(i).getPesel())){
+                if(pesel.equals(srpesel)){
+                    continue;
+                }
                 System.out.println("Jest już w bazie pacjent o takim peselu");
                 return true;
             }
@@ -74,8 +77,8 @@ public class PatientRegister {
         return false;
     }
 
-    public boolean validate(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins){
-        if (containsPesel(pesel)){
+    public boolean validate(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel){
+        if (containsPesel(pesel,srpesel)){
             System.out.println("Podany pesel juz istnieje");
             return false;
         }
