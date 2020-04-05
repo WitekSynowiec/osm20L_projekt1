@@ -4,12 +4,12 @@
 
 **Projekt:** 1
 
-**Zadanie:** XX
+**Zadanie:** Tworzenie interfejsu graficznego aplikacji
 
-**Temat:** Xxxx
+**Temat:** Tworzenie interfejsu graficznego aplikacji
 
-**Zespol:** Xxxx Xxxx, Yyyy Yyyy
+**Zespol:** Jan Grzegorek, Witold Synowiec
 
-**Biblioteki:** Xxxx
+**Biblioteki:** Java Swing
 
-**Uwagi dodatkowe:** Xxxx
+**Uwagi dodatkowe:** Klasa main znajduje się w folderze gui (ścierzka com.company.gui). Uruchomienie w środowisku intelliJ może wymagać edycję ustawień konfiguracji, należy wówczas ręcznie wskazać klasę main. Aplikację zrealizowano przy użyciu modułu JCalendar z projektu toedter, odnośnik do strony: https://github.com/toedter/jcalendar, oraz z modułu JGoodies, odnośnik na stronie: http://www.jgoodies.com/freeware/libraries/looks

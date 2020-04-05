@@ -1,37 +1,53 @@
 package com.company.gui.app_view;
 
 import com.company.gui.app_controller.AppController;
-import com.company.gui.app_model.Examination;
-import com.company.gui.app_model.PatientRecord;
 import com.company.gui.app_model.PatientRegister;
-//import com.company.gui.interfaces.ModelListener;
-//import com.company.gui.interfaces.ViewListener;
-//import com.company.gui.interfaces.AppViewInterface;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+/**Klasa {@code AppView} głównego frame'u aplikacji
+ * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JFrame<code/>>
+ * składa się z trzech paneli, odpowiedzialnych odpowiednio:
+ * 1) za obsługę danych pacjenta <code>PDPanel</code>
+ * 2) za obsługę badań pacjenta <code>EPanel</code>
+ * 3) za obsługę tabeli z rekordami pacjentów <code>PDPanel</code>
+ * Klasa <code>PatientRegister</code> służy do przechowywania danych rekordów pacjentów
+ * Klasa <code>ctrl</code> to klasa kontrolera odpowiedzialnego za obsługę zdarzeń w aplikacji.
+*/
 
 public class AppView extends JFrame {
     private PDPanel patientDataPanel;
     private EPanel examinationPanel;
     private TablePanel tablePanel;
     private PatientRegister patientRegister;
+    private AppController ctrl;
 
 
-    public AppView(){
-        this.doGui();
-        AppController ctrl = new AppController(this, patientRegister);
+    /**Jedyny konstruktor klasy {@code AppView} wymaga podania argumentu
+     * w postaci obiektu klasy <code>PatientRegister</code>. Jest to realizacja
+     * modelu MVC.
+     * Uzasadniamy to koniecznością istnienia klasy przechowującej dane
+     * do działania aplikacji. Tą klasę można łatwo zmienić w bardziej
+     * zaawansowaną bazę danych, modyfikując ją.
+    * */
+    public AppView(PatientRegister register){
+
+        this.doGui(register);
+        ctrl = new AppController(this, patientRegister);
         setListeners(ctrl);
     }
 
-    private void doGui()
+    /**Metoda <code>doGui()<code/> odpowiedzialna jest za stworzenie widoku aplikacji. Metodę
+     * <code>doGui()</code> realizujemy jako prywatną, gdyż sensu nie ma stosowanie jej
+     * poza klasą <code>AppView</code>.
+     */
+    private void doGui(PatientRegister register)
     {
+        this.setTitle("Aplikacja do obsługi rejestru pacjentów");
         getContentPane().setBackground(Color.lightGray);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        patientRegister =  new PatientRegister();
+        patientRegister =  register;
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
         tablePanel = new TablePanel(patientRegister);
@@ -61,8 +77,12 @@ public class AppView extends JFrame {
         this.setResizable(false);
     }
 
-
-    public void setListeners(AppController ctrl)
+    /**Metoda <code>setListeners()<code/> odpowiedzialna jest za ustawienie listener'ów,
+     * na wszystkie możliwe modyfikowalne przez użytkownika pola i moduły. Metodę
+     * <code>setListeners()</code> realizujemy jako prywatną gdyż nie ma potrzeby
+     * udostępniania jej w zastosowaniach poza klasą <code>AppView</code>.
+     */
+    private void setListeners(AppController ctrl)
     {
         patientDataPanel.getCpdButton().addActionListener(ctrl);
         patientDataPanel.getSpdButton().addActionListener(ctrl);
@@ -75,19 +95,26 @@ public class AppView extends JFrame {
         tablePanel.getTable().getSelectionModel().addListSelectionListener(ctrl);
         tablePanel.getTable().getModel().addTableModelListener(ctrl);
     }
-    public PatientRegister getPatientRegister(){
-        return patientRegister;
-    }
+
+    /**Metoda <code>getPDPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>PDPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+     * ze względu na dostępność w klasie kontrolera.*/
     public PDPanel getPDPanel(){
         return patientDataPanel;
     }
+
+    /**Metoda <code>getEPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>EPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+     * ze względu na dostępność w klasie kontrolera.*/
     public EPanel getEPanel(){
         return examinationPanel;
     }
+
+    /**Metoda <code>getTPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>TPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+     * ze względu na dostępność w klasie kontrolera.*/
     public TablePanel getTPanel(){
         return tablePanel;
     }
-//    public static PatientRegister getPatientRegister(){
-//        return patientRegister;
-//    }
+
 }

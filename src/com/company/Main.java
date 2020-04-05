@@ -1,8 +1,15 @@
 package com.company;
 
 import com.company.gui.app_model.PatientRegister;
-
 import javax.swing.*;
+
+/**<b>Aplikacja do obsługi pacjentów</b>
+ * aplikacja służy do przechowywania i obsługi rejestru pacjentów oraz ich badań.
+ * Dane są przechowywane w postaci instancji klasy <code>PatientRegister</code>,
+ * a ich obsługa realizowana jest przez klasę <code>AppView</code>.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
+ * @since 14*/
 
 public class Main {
     public static void main(String[] args) {
@@ -14,10 +21,10 @@ public class Main {
                 }
             }
         } catch (Exception e) {
-            // If Nimbus is not available, you can set the GUI to another look and feel.
+            //default
         }
         PatientRegister register = new PatientRegister();
-        com.company.gui.app_view.AppView app = new com.company.gui.app_view.AppView();
+        com.company.gui.app_view.AppView app = new com.company.gui.app_view.AppView(register);
         app.setVisible(true);
     }
 }

@@ -15,13 +15,16 @@ public class PDPanel extends JPanel {
     private JComboBox<String> iComboBox;
     private JButton spdButton, cpdButton;
 
-
+    /**Klasa {@code PDPanel} odpowiada za panel obsługujący wpisywanie danych pacjenta
+     * w głównym framie aplikacji.
+     * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel<code/>
+     * składa się przycisków zrealizowanych przy pomocy GroupLayout:
+     */
 
     public PDPanel(){
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createTitledBorder("Dane pacjenta: "));
-//###########################
-//
+
         getNameLabel = new JLabel("Imię: ");
         getNameTextField = new JTextField(10);
         getSurnameLabel = new JLabel("Nazwisko: ");
@@ -58,10 +61,8 @@ public class PDPanel extends JPanel {
 
     }
 
-    public JTextField getGetNameTextField(){
-        return getNameTextField;
-    }
-
+    /**Gettery i settery do pól panelu. Metody clear czyszczą powierzone im pola tekstowe,
+     * przy czym <code>clearAllFields<code/> czyści wszystkie */
     public String getTextGetNameTextField()
     {
         return getNameTextField.getText();
@@ -76,10 +77,6 @@ public class PDPanel extends JPanel {
         setTextGetNameTextField("");
     }
 
-
-    public JTextField getGetSurnameTextField(){
-        return getSurnameTextField;
-    }
     public String getTextGetSurnameTextField()
     {
         return getSurnameTextField.getText();
@@ -94,12 +91,7 @@ public class PDPanel extends JPanel {
         setTextGetSurnameTextField("");
     }
 
-    public JTextField getGetPeselTextField(){
-        return getPeselTextField;
-    }
-
-    public String getTextGetPeselTextField()
-    {
+    public String getTextGetPeselTextField() {
         String txtpesel = getPeselTextField.getText();
 
         for(char c : txtpesel.toCharArray()){
@@ -113,7 +105,7 @@ public class PDPanel extends JPanel {
 
     public void setTextGetPeselTextField(String text)
     {
-        getPeselTextField.setText(text.toString());
+        getPeselTextField.setText(text);
     }
 
     public void clearGetPeselTextField()
@@ -121,9 +113,7 @@ public class PDPanel extends JPanel {
         getPeselTextField.setText("");
     }
 
-
-    public Sex getGetSex()
-    {
+    public Sex getGetSex() {
         if (getManRadioButton.isSelected())
             return Sex.M;
         else if (getWomanRadioButton.isSelected())
@@ -131,38 +121,29 @@ public class PDPanel extends JPanel {
         else return null;
     }
 
-    public void setSexRadioButton(Sex sex)
-    {
+    public void setSexRadioButton(Sex sex) {
         if (sex.equals(Sex.K))
             setGetWomanRadioButton();
         else if (sex.equals(Sex.M))
             setGetManRadioButton();
     }
 
-    public void setGetWomanRadioButton()
-    {
+    public void setGetWomanRadioButton() {
             getWomanRadioButton.setSelected(true);
             getManRadioButton.setSelected(false);
     }
-    public void setGetManRadioButton()
-    {
+
+    public void setGetManRadioButton() {
         getWomanRadioButton.setSelected(false);
         getManRadioButton.setSelected(true);
     }
-    public void clearManWomanRadioButtons()
-    {
+
+    public void clearManWomanRadioButtons() {
         getWomanRadioButton.setSelected(false);
         getManRadioButton.setSelected(false);
     }
 
-
-
-    public JComboBox getGetInsComboBox()
-    {
-        return iComboBox;
-    }
-    public Insurance getGetInsurance()
-    {
+    public Insurance getGetInsurance() {
         switch (iComboBox.getSelectedIndex())
         {
             case 0:
@@ -177,8 +158,8 @@ public class PDPanel extends JPanel {
                 return null;
         }
     }
-    public void setGetInsurance(Insurance ins)
-    {
+
+    public void setGetInsurance(Insurance ins) {
         switch (ins) {
             case NO_ANS:
                 iComboBox.setSelectedIndex(0);
@@ -194,6 +175,7 @@ public class PDPanel extends JPanel {
                 break;
         }
     }
+
     public void clearGetInsurance(){
         setGetInsurance(Insurance.NO_ANS);
     }
@@ -201,27 +183,20 @@ public class PDPanel extends JPanel {
     public JButton getCpdButton(){
         return cpdButton;
     }
+
     public JButton getSpdButton(){
         return spdButton;
     }
+
     public JRadioButton getGetManRadioButton(){
         return getManRadioButton;
     }
+
     public JRadioButton getGetWomanRadioButton(){
         return getWomanRadioButton;
     }
 
-    public void enableChange(boolean b)
-    {
-        getNameTextField.setEnabled(b);
-        getSurnameTextField.setEnabled(b);
-        getManRadioButton.setEnabled(b);
-        getWomanRadioButton.setEnabled(b);
-        getPeselTextField.setEnabled(b);
-        iComboBox.setEnabled(b);
-    }
-    public void clearAllFields()
-    {
+    public void clearAllFields() {
         clearGetPeselTextField();
         clearGetNameTextField();
         clearGetSurnameTextField();
@@ -229,6 +204,16 @@ public class PDPanel extends JPanel {
         clearManWomanRadioButtons();
     }
 
+    /** Metoda enableChange(boolean b) ustawia komponenty panelu na możliwe (w wypadku
+     * {@param b} równego true) lub na niemożliwe do edycji, w p.p.*/
+    public void enableChange(boolean b) {
+        getNameTextField.setEnabled(b);
+        getSurnameTextField.setEnabled(b);
+        getManRadioButton.setEnabled(b);
+        getWomanRadioButton.setEnabled(b);
+        getPeselTextField.setEnabled(b);
+        iComboBox.setEnabled(b);
+    }
 
 
 }

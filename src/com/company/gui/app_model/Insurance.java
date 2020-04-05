@@ -1,5 +1,7 @@
 package com.company.gui.app_model;
 
+
+/** Typ enum {@code Insurance} odpowiada za przechowywanie rodzaju badania pacjenta.*/
 public enum Insurance {
     NO_ANS(""),
     NFZ("NFZ"),
@@ -13,7 +15,6 @@ public enum Insurance {
     public  String getIns(){
         return ins;
     }
-
     public void setIns(String ins) {
         this.ins = ins;
     }

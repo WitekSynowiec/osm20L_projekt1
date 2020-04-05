@@ -1,13 +1,18 @@
 package com.company.gui.app_view;
 
-//import com.company.gui.app_model.TableModel;
-
 import com.company.gui.app_model.PatientRegister;
 import com.company.gui.app_model.TableModel;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**Klasa {@code TablePanel} odpowiada za panel obsługujący tablicę uwidaczniającą
+ * dane pacjentów w bazie znajdujący się w głównym framie aplikacji.
+ * Klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel<code/>.
+ * Składa się z tablicy oraz panelu "południowego" zawierającego przyciski do dodania pacjenta
+ * bądź jego usunięcia. Ze względu na ładwość realizacji użyto do ustawienia tych komponentów
+ * klasy BorderLayout.
+ */
 public class TablePanel extends JPanel{
     private JButton button1  = new JButton("Dodaj");
     private JButton button2  = new JButton("Usuń");

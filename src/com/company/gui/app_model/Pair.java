@@ -1,5 +1,7 @@
 package com.company.gui.app_model;
 
+
+/** Klasa {@code Pair} jest realizacją wzorca projektowego pary.*/
 public class Pair {
     protected String value1;
     protected String value2;

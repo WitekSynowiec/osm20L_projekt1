@@ -1,15 +1,17 @@
 package com.company.gui.app_view;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+
+/**Klasa {@code EPanel} odpowiada za panel obsługujący wpisywanie danych badania pacjenta
+ * w głównym framie aplikacji.
+ * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel<code/>
+ * składa się przycisków zrealizowanych przy pomocy GroupLayout:
+ */
 public class EPanel extends JPanel{
     private JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
     private JTextField glucoseTextField, amylaseTextField, phosphateTextField;
@@ -44,9 +46,12 @@ public class EPanel extends JPanel{
         examinationLayout.setVerticalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.BASELINE).addComponent(dateLabel).addComponent(dateChooser)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(glucoseLabel).addComponent(glucoseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(amylaseLabel).addComponent(amylaseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(phosphateLabel).addComponent(phosphateTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(seButton).addComponent(ceButton))));
 
     }
+    /**Gettery i settery do pól panelu. Metody clear czyszczą powierzone im pola tekstowe,
+     * przy czym <code>clearAllFields<code/> czyści wszystkie */
     public JButton getSeButton(){
         return seButton;
     }
+
     public JButton getCeButton(){
         return ceButton;
     }
@@ -54,18 +59,23 @@ public class EPanel extends JPanel{
     public void setGlucoseTextField(String t){
         glucoseTextField.setText(t);
     }
+
     public void clearGlucoseTextField(){
         setGlucoseTextField("");
     }
+
     public void setAmylaseTextField(String t){
         amylaseTextField.setText(t);
     }
+
     public void clearAmylaseTextField(){
         setAmylaseTextField("");
     }
+
     public void setPhosphateTextField(String t){
         phosphateTextField.setText(t);
     }
+
     public void clearPhosphateTextField(){
         setPhosphateTextField("");
     }
@@ -110,8 +120,9 @@ public class EPanel extends JPanel{
         clearPhosphateTextField();
     }
 
-    public void enableChange(boolean b)
-    {
+    /** Metoda enableChange(boolean b) ustawia komponenty panelu na możliwe (w wypadku
+     * {@param b} równego true) lub na niemożliwe do edycji, w p.p.*/
+    public void enableChange(boolean b) {
         dateChooser.setEnabled(b);
         glucoseTextField.setEnabled(b);
         amylaseTextField.setEnabled(b);

@@ -1,30 +1,23 @@
 package com.company.gui.app_model;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-import com.company.Main;
-import com.company.gui.app_model.*;
-
-import java.awt.*;
-import com.company.gui.app_view.AppView;
-import java.util.ArrayList;
-
+/** Klasa {@code TableModel} obsługę model głównej tablicy używanej w apliakcji.
+ * Klasa nie realizuje dziedziczenia po DefaultTableModel ale po AbstractTableModel.
+ * Wynika to z prostszej implementacji w naszym zastosowaniu.
+ * */
 public class TableModel extends AbstractTableModel {
 
     private PatientRegister register;
     private String[] colNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
-//    private Class[] colTypes = {String.class, Sex.class, Long.class, Insurance.class,Examination.class};
 
+    /** Konstruktor {@code TableModel} przyjmuje jeden parametr {@param t } klasy
+     * <code>PatientRegister<code/>. Jest to de facto instancja "bazy danych" pacjentów
+     * na której operujemy.
+     * */
     public TableModel(PatientRegister t){
         super();
-
         register = t;
-    }
-
-    public TableModelListener addTableModelListener()
-    {
-        return addTableModelListener();
     }
 
     public void insertData(PatientRegister t)
@@ -32,16 +25,27 @@ public class TableModel extends AbstractTableModel {
         register = t;
     }
 
+    /**Metoda <code>getRowCount<code/> zwraca wielkość {@param register} zdefiniowanej w
+     * implementacji klasy parametru. Jest ona (a przynajmneij powinna być) równa liczbie
+     * wyświetlonych wierszy tablicy. Niezbędne jest zadbanie o to wykorzystując odpowiednie
+     * metody inferfejsu <code>ListSelectionListener<code/>.*/
     @Override
     public int getRowCount(){
         return register.getSize();
     }
 
+    /**Metoda <code>getColumnCount<code/> zwraca długość tablicy {@param colNames}.*/
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**Metoda <code>getValueAt(int rowIndex, int columnIndex)<code/> zwraca element
+     * {@param register} o indeksie {@param rowIndex} a następnie w zależności od wartości
+     * parametru  tablicy {@param colNames} zwraca dany element danych. Jest on (a przynajmniejj
+     * powienien być równy odpowiadającemu elementowi w wyświetlonemu tabeli. Jeśli jest inaczej
+     * jest to błąd. Należy zadbać aby ta równość była spełniona wykorzystując odpowiednie metody.
+     * */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
@@ -59,11 +63,15 @@ public class TableModel extends AbstractTableModel {
                 return 0;
         }
     }
+
+    /**Metoda <code>getColumnNames(int i)<code/> zwraca element i-ty element tablicy {@param colNames}.*/
     @Override
-    public String getColumnName(int index) {
-        return colNames[index];
+    public String getColumnName(int i) {
+        return colNames[i];
     }
 
+    /**Metoda <code>getColumnClass(int columnIndex)<code/> zwraca typ klasy przechowywany w wierszu
+     * tablicy na pozycji {@param columnIndex}.*/
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return getValueAt(0, columnIndex).getClass();
