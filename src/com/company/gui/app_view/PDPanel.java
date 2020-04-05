@@ -98,12 +98,20 @@ public class PDPanel extends JPanel {
         return getPeselTextField;
     }
 
-    public Long getTextGetPeselTextField()
+    public String getTextGetPeselTextField()
     {
-        return Long.parseLong(getPeselTextField.getText());
+        String txtpesel = getPeselTextField.getText();
+
+        for(char c : txtpesel.toCharArray()){
+            if(!(Character.isDigit(c))){
+                System.out.println("Nie wszystkie znaki są cyframi");
+                return "";
+            }
+        }
+            return getPeselTextField.getText();
     }
 
-    public void setTextGetPeselTextField(Long text)
+    public void setTextGetPeselTextField(String text)
     {
         getPeselTextField.setText(text.toString());
     }

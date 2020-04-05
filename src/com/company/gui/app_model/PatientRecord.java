@@ -2,7 +2,7 @@ package com.company.gui.app_model;
 
 public class PatientRecord {
     private FullName fullName;
-    private long pesel;
+    private String pesel;
     private Sex sex;
     private Insurance ins;
     private Examination examination;
@@ -27,11 +27,11 @@ public class PatientRecord {
         return fullName.getFullName();
     }
 
-    public Long getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(long pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 
@@ -79,7 +79,7 @@ public class PatientRecord {
         return record.getPesel()==pesel;
     }
 
-    public PatientRecord(String _name, String _surname, long _pesel, Sex _sex, Insurance _ins){
+    public PatientRecord(String _name, String _surname, String _pesel, Sex _sex, Insurance _ins){
         this.fullName = new FullName(_name,_surname);
         pesel = _pesel;
         sex = _sex;

@@ -70,6 +70,18 @@ public class EPanel extends JPanel{
         setPhosphateTextField("");
     }
 
+    public String getGlucoseTextField() {
+        return glucoseTextField.getText();
+    }
+
+    public String getAmylaseTextField() {
+        return amylaseTextField.getText();
+    }
+
+    public String getPhosphateTextField() {
+        return phosphateTextField.getText();
+    }
+
     public Float getFloatGlucoseTextField() {
         return Float.parseFloat(glucoseTextField.getText());
     }

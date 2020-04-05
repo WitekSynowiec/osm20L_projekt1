@@ -16,17 +16,32 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
     private PatientRegister	pRegister;
 
     private boolean validatePD(){
-        if (pRegister.contains(new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance())))
-        {
-            StringBuilder str = new StringBuilder();
-            str.append("Pacjent o numerze pesel: ");
-            str.append(mView.getPDPanel().getTextGetPeselTextField());
-            str.append(" jest już w bazie danych.");
-            JOptionPane.showMessageDialog(null, str);
+
+        if(!pRegister.validate(
+                mView.getPDPanel().getTextGetNameTextField(),
+                mView.getPDPanel().getTextGetSurnameTextField(),
+                mView.getPDPanel().getTextGetPeselTextField(),
+                mView.getPDPanel().getGetManRadioButton(),
+                mView.getPDPanel().getGetWomanRadioButton(),
+                mView.getPDPanel().getGetInsurance().getIns())){
+            System.out.println("Walidacja nie udana");
             return false;
         }
+        System.out.println("Walidacja udana");
+        return true;
+    }
+    private boolean validateE(){
 
-        return !mView.getPDPanel().getTextGetNameTextField().isEmpty() && !mView.getPDPanel().getTextGetSurnameTextField().isEmpty() && !mView.getPDPanel().getTextGetPeselTextField().toString().isEmpty() && (mView.getPDPanel().getGetManRadioButton().isSelected() || mView.getPDPanel().getGetWomanRadioButton().isSelected()) && !mView.getPDPanel().getGetInsurance().getIns().equals("") && String.valueOf(mView.getPDPanel().getTextGetPeselTextField()).length()==11;
+        if(!pRegister.validateExam(
+                mView.getEPanel().getAmylaseTextField(),
+                mView.getEPanel().getGlucoseTextField(),
+                mView.getEPanel().getPhosphateTextField(),
+                mView.getEPanel().getDateChooser().getDate())){
+            System.out.println("Walidacja nie udana");
+            return false;
+        }
+        System.out.println("Walidacja udana");
+        return true;
     }
 
     private boolean validateString(String str) {
@@ -80,12 +95,14 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
 
         if (source == mView.getEPanel().getSeButton())
         {
-            pRegister.getRecord(selectedRow).setExamination(new Examination(mView.getEPanel().getFloatGlucoseTextField(),mView.getEPanel().getFloatAmylaseTextField(),mView.getEPanel().getFloatPhosphateTextField(),mView.getEPanel().getDateChooser().getDate()));
-            model.fireTableRowsUpdated(0,model.getRowCount()-1);
-            mView.getEPanel().clearAllFields();
-            mView.getPDPanel().clearAllFields();
-            mView.getEPanel().enableChange(false);
-            mView.getPDPanel().enableChange(false);
+            if(validateE()){
+                pRegister.getRecord(selectedRow).setExamination(new Examination(mView.getEPanel().getFloatGlucoseTextField(),mView.getEPanel().getFloatAmylaseTextField(),mView.getEPanel().getFloatPhosphateTextField(),mView.getEPanel().getDateChooser().getDate()));
+                model.fireTableRowsUpdated(0,model.getRowCount()-1);
+                mView.getEPanel().clearAllFields();
+                mView.getPDPanel().clearAllFields();
+                mView.getEPanel().enableChange(false);
+                mView.getPDPanel().enableChange(false);
+            }
         }
 
         if (source == mView.getEPanel().getCeButton())
