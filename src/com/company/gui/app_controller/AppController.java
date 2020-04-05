@@ -70,6 +70,9 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 mView.getPDPanel().enableChange(false);
                 mView.getEPanel().enableChange(false);
             }
+            mView.getTPanel().getTable().getSelectionModel().removeListSelectionListener(this);
+            mView.getTPanel().getTable().clearSelection();
+            mView.getTPanel().getTable().getSelectionModel().addListSelectionListener(this);
         }
         if (source == mView.getPDPanel().getCpdButton())
         {
@@ -103,6 +106,13 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 mView.getEPanel().enableChange(false);
                 mView.getPDPanel().enableChange(false);
             }
+            try {
+                mView.getTPanel().getTable().clearSelection();
+            }
+            catch(Exception x){
+                System.out.println("Ominieto bląd");
+            }
+
         }
 
         if (source == mView.getEPanel().getCeButton())

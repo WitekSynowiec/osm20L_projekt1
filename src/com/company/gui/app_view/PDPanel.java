@@ -213,11 +213,11 @@ public class PDPanel extends JPanel {
 
     public void enableChange(boolean b)
     {
-        getNameTextField.setEditable(b);
-        getSurnameTextField.setEditable(b);
+        getNameTextField.setEnabled(b);
+        getSurnameTextField.setEnabled(b);
         getManRadioButton.setEnabled(b);
         getWomanRadioButton.setEnabled(b);
-        getPeselTextField.setEditable(b);
+        getPeselTextField.setEnabled(b);
         iComboBox.setEnabled(b);
     }
     public void clearAllFields()

@@ -113,8 +113,8 @@ public class EPanel extends JPanel{
     public void enableChange(boolean b)
     {
         dateChooser.setEnabled(b);
-        glucoseTextField.setEditable(b);
-        amylaseTextField.setEditable(b);
+        glucoseTextField.setEnabled(b);
+        amylaseTextField.setEnabled(b);
         phosphateTextField.setEnabled(b);
     }
 
