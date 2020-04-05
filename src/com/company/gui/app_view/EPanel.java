@@ -5,12 +5,19 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class EPanel extends JPanel{
     private JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
     private JTextField glucoseTextField, amylaseTextField, phosphateTextField;
     private JButton seButton, ceButton;
     private JDateChooser dateChooser;
+
+
+
     public EPanel(){
         this.setBackground(Color.lightGray);
         this.setBorder(BorderFactory.createTitledBorder("Badanie: "));
@@ -37,10 +44,10 @@ public class EPanel extends JPanel{
         examinationLayout.setVerticalGroup(examinationLayout.createSequentialGroup().addGroup(examinationLayout.createParallelGroup( GroupLayout.Alignment.BASELINE).addComponent(dateLabel).addComponent(dateChooser)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(glucoseLabel).addComponent(glucoseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(amylaseLabel).addComponent(amylaseTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(phosphateLabel).addComponent(phosphateTextField)).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addGroup(examinationLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(seButton).addComponent(ceButton))));
 
     }
-    public JButton getSpdButton(){
+    public JButton getSeButton(){
         return seButton;
     }
-    public JButton getCpdButton(){
+    public JButton getCeButton(){
         return ceButton;
     }
 
@@ -63,11 +70,40 @@ public class EPanel extends JPanel{
         setPhosphateTextField("");
     }
 
+    public Float getFloatGlucoseTextField() {
+        return Float.parseFloat(glucoseTextField.getText());
+    }
+
+    public Float getFloatAmylaseTextField() {
+        return Float.parseFloat(amylaseTextField.getText());
+    }
+
+    public Float getFloatPhosphateTextField() {
+        return Float.parseFloat(phosphateTextField.getText());
+    }
+
+    public JDateChooser getDateChooser()
+    {
+        return dateChooser;
+    }
+
+    public void setDateChooser(Date date) {
+        dateChooser.setDate(date);
+    }
+
     public void clearAllFields(){
         dateChooser.setCalendar(null);
         clearAmylaseTextField();
         clearGlucoseTextField();
         clearPhosphateTextField();
+    }
+
+    public void enableChange(boolean b)
+    {
+        dateChooser.setEnabled(b);
+        glucoseTextField.setEditable(b);
+        amylaseTextField.setEditable(b);
+        phosphateTextField.setEnabled(b);
     }
 
 

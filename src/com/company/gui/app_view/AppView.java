@@ -68,8 +68,8 @@ public class AppView extends JFrame {
         patientDataPanel.getSpdButton().addActionListener(ctrl);
         patientDataPanel.getGetManRadioButton().addActionListener(ctrl);
         patientDataPanel.getGetWomanRadioButton().addActionListener(ctrl);
-        examinationPanel.getSpdButton().addActionListener(ctrl);
-        examinationPanel.getCpdButton().addActionListener(ctrl);
+        examinationPanel.getSeButton().addActionListener(ctrl);
+        examinationPanel.getCeButton().addActionListener(ctrl);
         tablePanel.getAddButton().addActionListener(ctrl);
         tablePanel.getDelButton().addActionListener(ctrl);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(ctrl);

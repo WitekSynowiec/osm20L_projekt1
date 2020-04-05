@@ -1,16 +1,9 @@
 package com.company.gui.app_model;
 
-import javax.swing.table.AbstractTableModel;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class PatientRegister {
     private ArrayList<PatientRecord> patientDatabase = new ArrayList<>();
-    private String[] colNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
-    private Class[] colTypes = {String.class, Sex.class, Long.class, Insurance.class,Examination.class};
-    private Color gridColor = null;
-
-
 
     public void add(PatientRecord record)
     {
@@ -20,6 +13,17 @@ public class PatientRegister {
     {
         patientDatabase.remove(i);
     }
+
+    public void insert(int i, PatientRecord record)
+    {
+        patientDatabase.set(i, record);
+    }
+
+    public boolean contains(PatientRecord record)
+    {
+        return patientDatabase.contains(record);
+    }
+
     public ArrayList<PatientRecord> get(){
         return patientDatabase;
     }

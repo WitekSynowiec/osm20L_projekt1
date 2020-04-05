@@ -9,11 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TablePanel extends JPanel{
-
-    Object[][] pData = {
-            {"Klara Synowiec","a","a","a","a"},
-
-    };
     private JButton button1  = new JButton("Dodaj");
     private JButton button2  = new JButton("Usuń");
     private JPanel southPanel;
@@ -30,8 +25,7 @@ public class TablePanel extends JPanel{
         southPanel = new JPanel();
         model = new TableModel(register);
         pTable = new JTable(model);
-
-
+        pTable.setGridColor(Color.black);
         pTable.setShowGrid(true);
 
         JScrollPane scrollPane = new JScrollPane(pTable);
