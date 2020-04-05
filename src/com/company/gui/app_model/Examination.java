@@ -1,17 +1,15 @@
 package com.company.gui.app_model;
 
+import java.util.Date;
+
 public class Examination {
     private float glucoseConcentration;
     private float amylaseConcentration;
     private float phosphateConcentration;
+    private Date examinationDate;
 
-    public Examination(float glucoseConcentration, float amylaseConcentration, float phosphateConcentration) {
-        this.glucoseConcentration = glucoseConcentration;
-        this.amylaseConcentration = amylaseConcentration;
-        this.phosphateConcentration = phosphateConcentration;
-    }
 
-    public float getGlucoseConcentration() {
+    public Float getGlucoseConcentration() {
         return glucoseConcentration;
     }
 
@@ -19,7 +17,7 @@ public class Examination {
         this.glucoseConcentration = glucoseConcentration;
     }
 
-    public float getAmylaseConcentration() {
+    public Float getAmylaseConcentration() {
         return amylaseConcentration;
     }
 
@@ -27,11 +25,29 @@ public class Examination {
         this.amylaseConcentration = amylaseConcentration;
     }
 
-    public float getPhosphateConcentration() {
+    public Float getPhosphateConcentration() {
         return phosphateConcentration;
     }
 
     public void setPhosphateConcentration(float phosphateConcentration) {
         this.phosphateConcentration = phosphateConcentration;
     }
-}
+
+    public Date getExaminationDate() {
+        return examinationDate;
+    }
+
+    public void setExaminationDate(Date date) {
+        this.examinationDate = date;
+    }
+
+
+
+    public Examination(Float glucoseConcentration, Float amylaseConcentration, Float phosphateConcentration, Date d) {
+        this.glucoseConcentration = glucoseConcentration;
+        this.amylaseConcentration = amylaseConcentration;
+        this.phosphateConcentration = phosphateConcentration;
+        this.examinationDate = d;
+    }
+
+    }

@@ -7,14 +7,6 @@ public class PatientRecord {
     private Insurance ins;
     private Examination examination;
 
-    public PatientRecord(String _name, String _surname, long _pesel, Sex _sex, Insurance _ins){
-        this.fullName = new FullName(_name,_surname);
-        pesel = _pesel;
-        sex = _sex;
-        ins = _ins;
-        examination = null;
-    }
-
     public String getName() {
         return fullName.getValue1();
     }
@@ -51,10 +43,6 @@ public class PatientRecord {
         this.sex = sex;
     }
 
-    public String getInsString(){
-        return ins.getIns();
-    }
-
     public Insurance getIns() {
         return ins;
     }
@@ -67,7 +55,35 @@ public class PatientRecord {
         return examination;
     }
 
+    public Boolean isExamined(){
+        if (examination == null)
+            return Boolean.FALSE;
+        else
+            return Boolean.TRUE;
+    }
+
     public void setExamination(Examination examination) {
         this.examination = examination;
+    }
+
+    public void set(PatientRecord record) {
+        this.setName(record.getName());
+        this.setSurname(record.getSurname());
+        this.setPesel(record.getPesel());
+        this.setSex(record.getSex());
+        this.setIns(record.getIns());
+        this.setExamination(record.getExamination());
+    }
+
+    public boolean equals(PatientRecord record){
+        return record.getPesel()==pesel;
+    }
+
+    public PatientRecord(String _name, String _surname, long _pesel, Sex _sex, Insurance _ins){
+        this.fullName = new FullName(_name,_surname);
+        pesel = _pesel;
+        sex = _sex;
+        ins = _ins;
+        examination = null;
     }
 }

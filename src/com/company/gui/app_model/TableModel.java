@@ -14,8 +14,7 @@ public class TableModel extends AbstractTableModel {
 
     private PatientRegister register;
     private String[] colNames = {"Imię i nazwisko", "Płeć", "Pesel","Ubezpieczenie", "Badanie"};
-    private Class[] colTypes = {String.class, Sex.class, Long.class, Insurance.class,Examination.class};
-    private Color gridColor = null;
+//    private Class[] colTypes = {String.class, Sex.class, Long.class, Insurance.class,Examination.class};
 
     public TableModel(PatientRegister t){
         super();
@@ -23,29 +22,6 @@ public class TableModel extends AbstractTableModel {
         register = t;
     }
 
-    public void addRow(PatientRecord do1) {
-        register.add(do1);
-        System.out.println("register.getSize(): "+register.getSize());
-        System.out.println("getRowCount: "+getRowCount());
-
-        fireTableRowsUpdated(0,getRowCount());
-
-    }
-
-    public void removeRow(int i){
-
-        if (!register.isEmpty())
-        {
-            System.out.println("Do remove row przekazano");
-            System.out.println(i);
-            fireTableRowsUpdated(0,getRowCount());
-            register.remove(i);
-            System.out.println(getRowCount());
-        }
-
-
-
-    }
     public TableModelListener addTableModelListener()
     {
         return addTableModelListener();
@@ -78,7 +54,7 @@ public class TableModel extends AbstractTableModel {
             case 3:
                 return register.getRecord(rowIndex).getIns().getIns();
             case 4:
-                return register.getRecord(rowIndex).getExamination();
+                return register.getRecord(rowIndex).isExamined();
             default:
                 return 0;
         }
@@ -86,5 +62,10 @@ public class TableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int index) {
         return colNames[index];
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        return getValueAt(0, columnIndex).getClass();
     }
 }
