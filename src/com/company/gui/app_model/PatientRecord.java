@@ -104,6 +104,4 @@ public class PatientRecord {
     public boolean equals(PatientRecord record){
         return record.getPesel().equals(pesel);
     }
-
-
 }
