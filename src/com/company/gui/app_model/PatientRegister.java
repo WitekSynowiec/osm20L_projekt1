@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class PatientRegister {
     private ArrayList<PatientRecord> patientDatabase = new ArrayList<>();
 
+
     public PatientRegister(){
         super();
     }
