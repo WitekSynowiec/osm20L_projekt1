@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /** Klasa {@code PatientRegister} odpowiada za przechowanie i obsługę
- * bazy danych pacjentów. Posiada jeden parametr <code>ArrayList<PatientRecord></code>,
+ * bazy danych pacjentów. Posiada jeden parametr <code>ArrayList</code>,
  * przechowujące rekordy pacjentów. Tą klasę można zastąpić w aplikacji prostą bazą
  * danych.
  * @author Janek Grzegorek
