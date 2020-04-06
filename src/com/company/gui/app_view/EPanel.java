@@ -9,8 +9,12 @@ import java.util.Date;
 
 /**Klasa {@code EPanel} odpowiada za panel obsługujący wpisywanie danych badania pacjenta
  * w głównym framie aplikacji.
- * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel<code/>
- * składa się przycisków zrealizowanych przy pomocy GroupLayout:
+ * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel</code>
+ * składa się przycisków zrealizowanych przy pomocy GroupLayout.
+ * Do realizacji użyto implementacji komponentu odpowiadającego za wybieranie dnia
+ * stworzonego przez <a href=https://github.com/toedter/jcalendar>toedter</a>.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
  */
 public class EPanel extends JPanel{
     private JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
@@ -47,7 +51,7 @@ public class EPanel extends JPanel{
 
     }
     /**Gettery i settery do pól panelu. Metody clear czyszczą powierzone im pola tekstowe,
-     * przy czym <code>clearAllFields<code/> czyści wszystkie */
+     * przy czym <code>clearAllFields</code> czyści wszystkie */
     public JButton getSeButton(){
         return seButton;
     }
@@ -121,7 +125,7 @@ public class EPanel extends JPanel{
     }
 
     /** Metoda enableChange(boolean b) ustawia komponenty panelu na możliwe (w wypadku
-     * {@param b} równego true) lub na niemożliwe do edycji, w p.p.*/
+     * <code>b</code> równego true) lub na niemożliwe do edycji, w p.p.*/
     public void enableChange(boolean b) {
         dateChooser.setEnabled(b);
         glucoseTextField.setEnabled(b);

@@ -6,13 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 
 /**Klasa {@code AppView} głównego frame'u aplikacji
- * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JFrame<code/>>
+ * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JFrame</code>>
  * składa się z trzech paneli, odpowiedzialnych odpowiednio:
  * 1) za obsługę danych pacjenta <code>PDPanel</code>
  * 2) za obsługę badań pacjenta <code>EPanel</code>
  * 3) za obsługę tabeli z rekordami pacjentów <code>PDPanel</code>
  * Klasa <code>PatientRegister</code> służy do przechowywania danych rekordów pacjentów
  * Klasa <code>ctrl</code> to klasa kontrolera odpowiedzialnego za obsługę zdarzeń w aplikacji.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
 */
 
 public class AppView extends JFrame {
@@ -37,7 +39,7 @@ public class AppView extends JFrame {
         setListeners(ctrl);
     }
 
-    /**Metoda <code>doGui()<code/> odpowiedzialna jest za stworzenie widoku aplikacji. Metodę
+    /**Metoda <code>doGui()</code> odpowiedzialna jest za stworzenie widoku aplikacji. Metodę
      * <code>doGui()</code> realizujemy jako prywatną, gdyż sensu nie ma stosowanie jej
      * poza klasą <code>AppView</code>.
      */
@@ -77,7 +79,7 @@ public class AppView extends JFrame {
         this.setResizable(false);
     }
 
-    /**Metoda <code>setListeners()<code/> odpowiedzialna jest za ustawienie listener'ów,
+    /**Metoda <code>setListeners()</code> odpowiedzialna jest za ustawienie listener'ów,
      * na wszystkie możliwe modyfikowalne przez użytkownika pola i moduły. Metodę
      * <code>setListeners()</code> realizujemy jako prywatną gdyż nie ma potrzeby
      * udostępniania jej w zastosowaniach poza klasą <code>AppView</code>.
@@ -96,22 +98,22 @@ public class AppView extends JFrame {
         tablePanel.getTable().getModel().addTableModelListener(ctrl);
     }
 
-    /**Metoda <code>getPDPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
-     * <code>PDPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+    /**Metoda <code>getPDPanel()</code> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>PDPanel</code> na żądania wystosowane w innych klasach. Jest metodą publiczną
      * ze względu na dostępność w klasie kontrolera.*/
     public PDPanel getPDPanel(){
         return patientDataPanel;
     }
 
-    /**Metoda <code>getEPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
-     * <code>EPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+    /**Metoda <code>getEPanel()</code> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>EPanel</code> na żądania wystosowane w innych klasach. Jest metodą publiczną
      * ze względu na dostępność w klasie kontrolera.*/
     public EPanel getEPanel(){
         return examinationPanel;
     }
 
-    /**Metoda <code>getTPanel()<code/> odpowiedzialna jest za wydanie obiektu panelu
-     * <code>TPanel<code/> na żądania wystosowane w innych klasach. Jest metodą publiczną
+    /**Metoda <code>getTPanel()</code> odpowiedzialna jest za wydanie obiektu panelu
+     * <code>TPanel</code> na żądania wystosowane w innych klasach. Jest metodą publiczną
      * ze względu na dostępność w klasie kontrolera.*/
     public TablePanel getTPanel(){
         return tablePanel;

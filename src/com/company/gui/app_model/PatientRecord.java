@@ -1,9 +1,10 @@
 package com.company.gui.app_model;
 
 /** Klasa {@code PatientRecord} odpowiada za przechowanie i obsługę danych pacjenta.
- * i ich badań. Jej parametry są parametrami danych pacjenta {@param fullName},
- * {@param pesel}, {@param sex}, {@param ins}, oraz jego badania {@param examination}.
- * */
+ * i ich badań. Jej parametry są parametrami danych pacjenta <code>fullName</code>,
+ * <code>pesel</code>, <code>sex</code>, <code>ins</code>, oraz jego badania <code>examination</code>.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec */
 public class PatientRecord {
     private FullName fullName;
     private String pesel;
@@ -15,7 +16,7 @@ public class PatientRecord {
     /**Jedyny konstruktor klasy <code>PatientRecord</code> to konstruktor zwykły,
      * przyjmujący za argumenty wskaźniki na wszystkie elementy danych pacjenta.
      * Wynika to z faktu że nie ma sensu tworzyć obiektu klasy z wybrakowanymi danymi.
-     * Parametr {@param examination} jest domyślnie ustawiony na null. Jest to motywowane
+     * Parametr <code>examination</code> jest domyślnie ustawiony na null. Jest to motywowane
      * faktem że najpierw pacjent musi być dodany żeby przeprowadzić mu badanie.
      * */
     public PatientRecord(String _name, String _surname, String _pesel, Sex _sex, Insurance _ins){
@@ -25,7 +26,7 @@ public class PatientRecord {
         ins = _ins;
         examination = null;
     }
-    /**Metody realizujące funkcje getterów i setterów pól klasy <code>PatientRecord<code/>*/
+    /**Metody realizujące funkcje getterów i setterów pól klasy <code>PatientRecord</code>*/
     public String getName() {
         return fullName.getValue1();
     }
@@ -78,7 +79,7 @@ public class PatientRecord {
         this.examination = examination;
     }
 
-    /**Metoda <code>isExamined<code/> ma na celu poinformowanie
+    /**Metoda <code>isExamined</code> ma na celu poinformowanie
      * żądającego czy dany pacjent ma wykonane badanie. Jeśli ma
      * funkcja zwraca true, w p.p false.*/
     public Boolean isExamined(){
@@ -88,8 +89,8 @@ public class PatientRecord {
             return Boolean.TRUE;
     }
 
-    /** Metoda <code>set<code/> ustawia wszystkie parametry klasy na parametru podanej
-     * jako argument klasy <code>PatientRecord<code/>. */
+    /** Metoda <code>set</code> ustawia wszystkie parametry klasy na parametru podanej
+     * jako argument klasy <code>PatientRecord</code>. */
     public void set(PatientRecord record) {
         this.setName(record.getName());
         this.setSurname(record.getSurname());
@@ -99,7 +100,7 @@ public class PatientRecord {
         this.setExamination(record.getExamination());
     }
 
-    /** Metoda <code>equals<code/> definiuje równość dwóch rekordów pacjentów. Zachodzi
+    /** Metoda <code>equals</code> definiuje równość dwóch rekordów pacjentów. Zachodzi
      * ona wtedy, kiedy obaj pacjenci mają ten sam numer pesel. */
     public boolean equals(PatientRecord record){
         return record.getPesel().equals(pesel);

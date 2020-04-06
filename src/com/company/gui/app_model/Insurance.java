@@ -1,7 +1,9 @@
 package com.company.gui.app_model;
 
 
-/** Typ enum {@code Insurance} odpowiada za przechowywanie rodzaju badania pacjenta.*/
+/** Typ enum {@code Insurance} odpowiada za przechowywanie rodzaju badania pacjenta.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec*/
 public enum Insurance {
     NO_ANS(""),
     NFZ("NFZ"),

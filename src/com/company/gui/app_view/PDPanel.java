@@ -6,6 +6,13 @@ import com.company.gui.app_model.Sex;
 import javax.swing.*;
 import java.awt.*;
 
+/**Klasa {@code PDPanel} odpowiada za panel obsługujący wpisywanie danych pacjenta
+ * w głównym framie aplikacji.
+ * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel</code>
+ * składa się przycisków zrealizowanych przy pomocy GroupLayout.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
+ */
 public class PDPanel extends JPanel {
 
     private JLabel getNameLabel, getSurnameLabel, getPeselLabel, getSexLabel, getInsLabel;
@@ -14,12 +21,6 @@ public class PDPanel extends JPanel {
     private String[] ins_states;
     private JComboBox<String> iComboBox;
     private JButton spdButton, cpdButton;
-
-    /**Klasa {@code PDPanel} odpowiada za panel obsługujący wpisywanie danych pacjenta
-     * w głównym framie aplikacji.
-     * klasa jest zrealizowana przy pomocy funkcji i modułów klasy bazowej <code>JPanel<code/>
-     * składa się przycisków zrealizowanych przy pomocy GroupLayout:
-     */
 
     public PDPanel(){
         this.setBackground(Color.lightGray);
@@ -62,7 +63,7 @@ public class PDPanel extends JPanel {
     }
 
     /**Gettery i settery do pól panelu. Metody clear czyszczą powierzone im pola tekstowe,
-     * przy czym <code>clearAllFields<code/> czyści wszystkie */
+     * przy czym <code>clearAllFields</code> czyści wszystkie */
     public String getTextGetNameTextField()
     {
         return getNameTextField.getText();
@@ -205,7 +206,7 @@ public class PDPanel extends JPanel {
     }
 
     /** Metoda enableChange(boolean b) ustawia komponenty panelu na możliwe (w wypadku
-     * {@param b} równego true) lub na niemożliwe do edycji, w p.p.*/
+     * <code>b</code> równego true) lub na niemożliwe do edycji, w p.p.*/
     public void enableChange(boolean b) {
         getNameTextField.setEnabled(b);
         getSurnameTextField.setEnabled(b);

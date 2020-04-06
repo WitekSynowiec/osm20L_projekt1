@@ -1,9 +1,11 @@
 package com.company.gui.app_model;
 
 
-/**Klasa {@code FullName} jest dostosowaniem klasy <code>Pair<code/>
+/**Klasa {@code FullName} jest dostosowaniem klasy <code>Pair</code>
  * do potrzeb przechowywania imienia i nazwiska. W tym celu zrealizowano
- * dziedziczenie po podanej klasie.*/
+ * dziedziczenie po podanej klasie.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec*/
 public class FullName extends Pair {
 
     /**Konstruktor klasy {@code FullName} jest realizacją konstruktora
@@ -14,7 +16,7 @@ public class FullName extends Pair {
         value2 = capitalize(b);
     }
 
-    /**Metoda <code>getFullName<code/> zwraca obiekt klasy <code>StringBuilder<code/>
+    /**Metoda <code>getFullName</code> zwraca obiekt klasy <code>StringBuilder</code>
      * zawierająca imię i nazwisko po spacji.*/
 
     public StringBuilder getFullName(){
@@ -25,7 +27,7 @@ public class FullName extends Pair {
         return str;
     }
 
-    /**Metoda <code>capitalize<code/> zwraca obiekt klasy <code>String<code/>
+    /**Metoda <code>capitalize</code> zwraca obiekt klasy <code>String</code>
      * zawierająca imię i nazwisko poprawione tak, by pierwsza litera była
      * literą wieką, a pozostałe małymi..*/
     private String capitalize(String str) {

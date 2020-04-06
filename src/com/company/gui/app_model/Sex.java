@@ -1,6 +1,8 @@
 package com.company.gui.app_model;
 
-/**Typ enum {@code Sex} odpowiada za przechowywanie płci pacjenta.*/
+/**Typ enum {@code Sex} odpowiada za przechowywanie płci pacjenta.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec*/
 public enum Sex {
     M("M"),
     K("K");

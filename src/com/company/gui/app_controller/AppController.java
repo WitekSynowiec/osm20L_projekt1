@@ -12,19 +12,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**Klasa {@code AppController} to klasa kontrolera apliakcji. Odpowiada za
- * obsługę zdarzeń. Klasa implementuje trzy interfejsy:
- * 1) <code>ActionListener<code/>
- * 2) <code>ListSelectionListener<code/>
- * 3) <code>TableModelListener<code/>
+ * obsługę zdarzeń. Klasa implementuje trzy interfejsy:<br></br>
+ * 1) <code>ActionListener</code><br></br>
+ * 2) <code>ListSelectionListener</code><br></br>
+ * 3) <code>TableModelListener</code><br></br>
  * Ze względu na to że opisy funkcji tutaj oznaczonych symbolem @Overrride są
  * dane w implementacji interfejsów właściwych (można mając kursor na nazwie interfejsu
  * i wklepać ctrl+B(Win)/command+B(Mac) je podejrzeć - przynajmniej w środowisku intelliJ)
- * nie uważamy za stosowne opisywanie tutaj tych metod.
+ * nie uważamy za stosowne opisywanie tutaj tych metod.<br></br><br></br>
  *
- * Klasa {@code AppController} posiada dwa parametry prywatne:
- * 1) {@param mView} klasy <code>AppView<code/> przechowyjąca wskaźnik na widok aplikacji
- * 2) {@param pRegister} klasy <code>PatientRegister<code/> przechowująca wskaźnik
+ * Klasa {@code AppController} posiada dwa parametry prywatne:<br></br>
+ * 1) <code>mView</code> klasy <code>AppView</code> przechowyjąca wskaźnik na widok aplikacji<br></br>
+ * 2) <code>pRegister</code> klasy <code>PatientRegister</code> przechowująca wskaźnik
  * na rejestr pacjentów.
+ *
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
  */
 public class AppController implements ActionListener, ListSelectionListener, TableModelListener {
     private AppView mView;

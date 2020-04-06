@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /** Klasa {@code PatientRegister} odpowiada za przechowanie i obsługę
- * bazy danych pacjentów. Posiada jeden parametr {@param ArrayList<PatientRecord> },
+ * bazy danych pacjentów. Posiada jeden parametr <code>ArrayList<PatientRecord></code>,
  * przechowujące rekordy pacjentów. Tą klasę można zastąpić w aplikacji prostą bazą
  * danych.
+ * @author Janek Grzegorek
+ * @author Witek Synowiec
  * */
 public class PatientRegister {
     private ArrayList<PatientRecord> patientDatabase = new ArrayList<>();
@@ -15,20 +17,20 @@ public class PatientRegister {
         super();
     }
 
-    /**Metoda <code>add(PatientRecord record)<code/> dodaje do rejestru element
-     * klasy <code>PatientRecord<code/> na koniec listy.*/
+    /**Metoda <code>add(PatientRecord record)</code> dodaje do rejestru element
+     * klasy <code>PatientRecord</code> na koniec listy.*/
     public void add(PatientRecord record)
     {
         patientDatabase.add(record);
     }
 
-    /**Metoda <code>remove(int i)<code/> usuwa z rejestru i-ty element.*/
+    /**Metoda <code>remove(int i)</code> usuwa z rejestru i-ty element.*/
     public void remove(int i)
     {
         patientDatabase.remove(i);
     }
 
-    /**Metoda <code>ValidateExam(String amylaza, String glukoza, String phosfo, java.util.Date date)<code/>
+    /**Metoda <code>ValidateExam(String amylaza, String glukoza, String phosfo, java.util.Date date)</code>
      * zwraca true jeśli wpisane przez użytkownika dane badania są poprawne.*/
     public boolean validateExam(String amylaza, String glukoza, String phosfo, java.util.Date date){
         if(date==null){
@@ -68,15 +70,15 @@ public class PatientRegister {
         return true;
     }
 
-    /**Metoda <code>contains(PatientRecord record)<code/>
+    /**Metoda <code>contains(PatientRecord record)</code>
      * zwraca true jeśli rejestr zawiera podany na wejściu rekord pacjenta. Zgodnie z metodą
-     * <code>equals()<code/> klasy <code>PatientRecord<code/> równość zachodzi gdy numery pesel
+     * <code>equals()</code> klasy <code>PatientRecord</code> równość zachodzi gdy numery pesel
      * są równe.*/
     public boolean contains(PatientRecord record) {
         return patientDatabase.contains(record);
     }
 
-    /**Metoda <code>containsPesel(String pesel, String srpesel)<code/>
+    /**Metoda <code>containsPesel(String pesel, String srpesel)</code>
      * zwraca true jeśli rejestr zawiera podany na wejściu rekord pacjenta.*/
     public boolean containsPesel(String pesel, String srpesel){
         for(int i=0;i<getSize();i++){
@@ -92,7 +94,7 @@ public class PatientRegister {
     }
 
     /**Metoda
-     * <code>validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel)<code/>
+     * <code>validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel)</code>
      * zwraca true jeśli wpisane przez użytkownika dane użytkownika są poprawne.*/
     public boolean validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel){
         if (containsPesel(pesel,srpesel)){
@@ -123,28 +125,28 @@ public class PatientRegister {
         return pesel.length() == 11;
     }
 
-    /**Metoda <code>get()<code/>
-     * zwraca listę {@param patientDatabase}.*/
+    /**Metoda <code>get()</code>
+     * zwraca listę <code>patientDatabase</code>.*/
     public ArrayList<PatientRecord> get(){
         return patientDatabase;
     }
 
-    /**Metoda <code>getRecord(int i)<code/>
-     * zwraca i-ty element listy {@param patientDatabase}.*/
+    /**Metoda <code>getRecord(int i)</code>
+     * zwraca i-ty element listy <code>patientDatabase</code>.*/
     public PatientRecord getRecord(int i){
         return patientDatabase.get(i);
     }
 
-    /**Metoda <code>getSize()<code/>
-     * zwraca wielkość listy {@param patientDatabase} liczoną
-     * jako liczba elementów <code>patientDatabase<code/> w liście.*/
+    /**Metoda <code>getSize()</code>
+     * zwraca wielkość listy <code>patientDatabase</code> liczoną
+     * jako liczba elementów <code>patientDatabase</code> w liście.*/
     public int getSize(){
         return patientDatabase.size();
     }
 
-    /**Metoda <code>isEmpty()<code/>
-     * zwraca true jeśli liczba elementów <code>patientDatabase<code/>
-     * w {@param patientDatabase} jest równa zeru, a false w p.p.*/
+    /**Metoda <code>isEmpty()</code>
+     * zwraca true jeśli liczba elementów <code>patientDatabase</code>
+     * w <code>patientDatabase</code> jest równa zeru, a false w p.p.*/
     public boolean isEmpty() {
         return patientDatabase.isEmpty();
     }
