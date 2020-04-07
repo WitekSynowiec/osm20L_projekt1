@@ -94,6 +94,19 @@ public class PatientRegister {
         return false;
     }
 
+    /** Metoda prywatna <code>validateString(String str)</code>  sprawdza czy dany ciąg znaków
+     * zawiera wyłącznie litery. Jeśli zawiera tylko litery zwraca true. False zwraca w p.p.*/
+    private boolean validateString(String str) {
+        str = str.toLowerCase();
+        char[] charArray = str.toCharArray();
+        for (char ch : charArray) {
+            if (!(ch >= 'a' && ch <= 'z')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**Metoda
      * <code>validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel)</code>
      * zwraca true jeśli wpisane przez użytkownika dane użytkownika są poprawne.*/
@@ -102,11 +115,11 @@ public class PatientRegister {
 //            System.out.println("Podany pesel juz istnieje");
             return false;
         }
-        if(name.isEmpty()){
+        if(name.isEmpty() || !validateString(name)){
 //            System.out.println("Nie wpisano imienia");
             return false;
         }
-        if(surname.isEmpty()){
+        if(surname.isEmpty() || !validateString(surname)){
 //            System.out.println("Nie wpisano nazwiska");
             return false;
         }

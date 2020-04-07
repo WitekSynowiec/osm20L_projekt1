@@ -44,20 +44,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
         mView.getTPanel().getTable().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
-    /** Metoda prywatna {@code validateString(String str)} sprawdza czy dany ciąg znaków
-     * zawiera wyłącznie litery. Jeśli zawiera tylko litery zwraca true. False zwraca w p.p.*/
-    private boolean validateString(String str) {
-        str = str.toLowerCase();
-        char[] charArray = str.toCharArray();
-        for (char ch : charArray) {
-            if (!(ch >= 'a' && ch <= 'z')) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**Metoda prywatna {@code validateE() sprawdza czy } podane dane badań są poprawne.*/
+    /**Metoda prywatna <code>validateE()</code> sprawdza czy podane dane badań są poprawne.*/
     private boolean validateE(){
         return pRegister.validateExam(
                 mView.getEPanel().getAmylaseTextField(),
@@ -66,7 +53,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 mView.getEPanel().getDateChooser().getDate());
     }
 
-    /**Metoda prywatna {@code validatePD() sprawdza czy } podane dane pacjentów są właściwe.*/
+    /**Metoda prywatna <code>validatePD()</code> sprawdza czy podane dane pacjentów są właściwe.*/
     private boolean validatePD(){
         String peselsen;
         if (pRegister.getSize()==0){
@@ -90,7 +77,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 peselsen);
     }
 
-    /**Metoda prywatna {@code clearTableSelection() usuwa zaznaczenia z tablicy.*/
+    /**Metoda prywatna <code>clearTableSelection()</code> usuwa zaznaczenia z tablicy.*/
     private void clearTableSelection(){
         try {
             mView.getTPanel().getTable().clearSelection();
