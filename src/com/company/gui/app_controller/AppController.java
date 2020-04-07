@@ -168,10 +168,11 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             {
                 model.fireTableRowsUpdated(0,model.getRowCount()-1);
                 pRegister.remove(selectedRow);
-                mView.getPDPanel().clearAllFields();
                 JOptionPane.showMessageDialog(mView, "Usunięto pacjenta.","Wiadomość",JOptionPane.INFORMATION_MESSAGE);
             }
             clearTableSelection();
+            mView.getEPanel().clearAllFields();
+            mView.getPDPanel().clearAllFields();
             mView.getPDPanel().enableChange(false);
             mView.getEPanel().enableChange(false);
         }
