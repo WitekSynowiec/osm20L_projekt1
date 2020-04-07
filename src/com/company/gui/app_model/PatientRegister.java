@@ -115,11 +115,11 @@ public class PatientRegister {
 //            System.out.println("Podany pesel juz istnieje");
             return false;
         }
-        if(name.isEmpty() || !validateString(name)){
+        if(name.isEmpty()){
 //            System.out.println("Nie wpisano imienia");
             return false;
         }
-        if(surname.isEmpty() || !validateString(surname)){
+        if(surname.isEmpty()){
 //            System.out.println("Nie wpisano nazwiska");
             return false;
         }
