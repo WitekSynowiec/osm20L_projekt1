@@ -148,15 +148,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                     str.append(pRegister.getRecord(pRegister.getSize()-1).getName());
                     str.append(" ");
                     str.append(pRegister.getRecord(pRegister.getSize()-1).getSurname());
-                    model.fireTableRowsUpdated(0,model.getRowCount()-1);
-                    mView.getPDPanel().clearAllFields();
-                    mView.getEPanel().clearAllFields();
-                    mView.getPDPanel().enableChange(false);
-                    mView.getEPanel().enableChange(false);
-                    clearTableSelection();
-                    mView.getPDPanel().enableChange(false);
-                    mView.getEPanel().enableChange(false);
-                    JOptionPane.showMessageDialog(mView, str, "Wiadomość",JOptionPane.INFORMATION_MESSAGE);
+                    addSetHandler(model, str,1);
                 }
             }
             else{
@@ -172,15 +164,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                         str.append(pRegister.getRecord(selectedRow).getName());
                         str.append(" ");
                         str.append(pRegister.getRecord(selectedRow).getSurname());
-                        model.fireTableRowsUpdated(0,model.getRowCount()-1);
-                        mView.getPDPanel().clearAllFields();
-                        mView.getEPanel().clearAllFields();
-                        mView.getPDPanel().enableChange(false);
-                        mView.getEPanel().enableChange(false);
-                        clearTableSelection();
-                        mView.getPDPanel().enableChange(false);
-                        mView.getEPanel().enableChange(false);
-                        JOptionPane.showMessageDialog(mView, str, "Wiadomość",JOptionPane.INFORMATION_MESSAGE);
+                        addSetHandler(model, str, 0);
                     }
                 }
                 else{
@@ -191,15 +175,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                         str.append(pRegister.getRecord(pRegister.getSize()-1).getName());
                         str.append(" ");
                         str.append(pRegister.getRecord(pRegister.getSize()-1).getSurname());
-                        model.fireTableRowsUpdated(0,model.getRowCount()-1);
-                        mView.getPDPanel().clearAllFields();
-                        mView.getEPanel().clearAllFields();
-                        mView.getPDPanel().enableChange(false);
-                        mView.getEPanel().enableChange(false);
-                        clearTableSelection();
-                        mView.getPDPanel().enableChange(false);
-                        mView.getEPanel().enableChange(false);
-                        JOptionPane.showMessageDialog(mView, str, "Wiadomość",JOptionPane.INFORMATION_MESSAGE);
+                        addSetHandler(model, str,1);
                     }
 
                 }
@@ -276,6 +252,22 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             clearTableSelection();
         }
 
+    }
+
+    void addSetHandler(TableModel model, StringBuilder str, int message)
+    {
+        model.fireTableRowsUpdated(0,model.getRowCount()-1);
+        mView.getPDPanel().clearAllFields();
+        mView.getEPanel().clearAllFields();
+        mView.getPDPanel().enableChange(false);
+        mView.getEPanel().enableChange(false);
+        clearTableSelection();
+        mView.getPDPanel().enableChange(false);
+        mView.getEPanel().enableChange(false);
+        if (message == 1)
+            JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
