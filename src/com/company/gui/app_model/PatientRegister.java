@@ -31,63 +31,13 @@ public class PatientRegister {
         patientDatabase.remove(i);
     }
 
-    /**Metoda <code>ValidateExam(String amylaza, String glukoza, String phosfo, java.util.Date date)</code>
-     * zwraca true jeśli wpisane przez użytkownika dane badania są poprawne.*/
-    public boolean validateExam(String amylaza, String glukoza, String phosfo, java.util.Date date){
-        if(date==null){
-//            System.out.println("Data - pusto");
-            return false;
-        }
-        if(amylaza.equals("")){
-//            System.out.println("Amylase - pusto");
-            return false;
-        }
-        if(glukoza.equals("")){
-//            System.out.println("Glucose - pusto");
-            return false;
-        }
-        if(phosfo.equals("")){
-//            System.out.println("Phosphate - pusto");
-            return false;
-        }
-        for(char c : amylaza.toCharArray()){
-            if(!(Character.isDigit(c) || c=='.')){
-//                System.out.println("Amylase - Nie wszystkie znaki są cyframi");
-                return false;
-            }
-        }
-        for(char c : glukoza.toCharArray()){
-            if(!(Character.isDigit(c) || c=='.')){
-//                System.out.println("Glucose - Nie wszystkie znaki są cyframi");
-                return false;
-            }
-        }
-        for(char c : phosfo.toCharArray()){
-            if(!(Character.isDigit(c) || c=='.')){
-//                System.out.println("Phosphate - Nie wszystkie znaki są cyframi");
-                return false;
-            }
-        }
-        return true;
-    }
-
     /**Metoda <code>contains(PatientRecord record)</code>
      * zwraca true jeśli rejestr zawiera podany na wejściu rekord pacjenta. Zgodnie z metodą
      * <code>equals()</code> klasy <code>PatientRecord</code> równość zachodzi gdy numery pesel
      * są równe.*/
     public boolean contains(PatientRecord record) {
-        return patientDatabase.contains(record);
-    }
-
-    /**Metoda <code>containsPesel(String pesel, String srpesel)</code>
-     * zwraca true jeśli rejestr zawiera podany na wejściu rekord pacjenta.*/
-    public boolean containsPesel(String pesel, String srpesel){
         for(int i=0;i<getSize();i++){
-            if(pesel.equals(getRecord(i).getPesel())){
-                if(pesel.equals(srpesel)){
-                    continue;
-                }
-//                System.out.println("Jest już w bazie pacjent o takim peselu");
+            if(record.equals(getRecord(i))){
                 return true;
             }
         }
@@ -105,38 +55,6 @@ public class PatientRegister {
             }
         }
         return true;
-    }
-
-    /**Metoda
-     * <code>validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel)</code>
-     * zwraca true jeśli wpisane przez użytkownika dane użytkownika są poprawne.*/
-    public boolean validatePD(String name, String surname, String pesel, JRadioButton sexm, JRadioButton sexw, String ins, String srpesel){
-        if (containsPesel(pesel,srpesel)){
-//            System.out.println("Podany pesel juz istnieje");
-            return false;
-        }
-        if(name.isEmpty()){
-//            System.out.println("Nie wpisano imienia");
-            return false;
-        }
-        if(surname.isEmpty()){
-//            System.out.println("Nie wpisano nazwiska");
-            return false;
-        }
-        if(pesel.isEmpty()){
-//            System.out.println("Nie wpisano peselu");
-            return false;
-        }
-        if(!sexm.isSelected() && !sexw.isSelected()){
-//            System.out.println("Nie wybrano plci");
-            return false;
-        }
-        if(ins.equals("")){
-//            System.out.println("Nie wybrano ubezpieczenia");
-            return false;
-        }
-        //            System.out.println("Nie poprawna liczba cyfr w peselu");
-        return pesel.length() == 11;
     }
 
     /**Metoda <code>get()</code>
