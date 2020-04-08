@@ -24,7 +24,11 @@ public class Main {
             //default
         }
         PatientRegister register = new PatientRegister();
-        com.company.gui.app_view.AppView app = new com.company.gui.app_view.AppView(register);
-        app.setVisible(true);
+        Runnable thread = () -> {
+            com.company.gui.app_view.AppView app = new com.company.gui.app_view.AppView(register);
+            app.setVisible(true);
+        };
+        SwingUtilities.invokeLater(thread);
+
     }
 }

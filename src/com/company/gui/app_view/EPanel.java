@@ -1,5 +1,6 @@
 package com.company.gui.app_view;
 
+import com.company.gui.app_controller.AppController;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
@@ -17,9 +18,9 @@ import java.util.Date;
  * @author Witek Synowiec
  */
 public class EPanel extends JPanel{
-    private JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
+    private final JLabel dateLabel, glucoseLabel, amylaseLabel, phosphateLabel;
     private JTextField glucoseTextField, amylaseTextField, phosphateTextField;
-    private JButton seButton, ceButton;
+    private final JButton seButton, ceButton;
     private JDateChooser dateChooser;
 
 
@@ -108,9 +109,9 @@ public class EPanel extends JPanel{
         return Float.parseFloat(phosphateTextField.getText());
     }
 
-    public JDateChooser getDateChooser()
+    public Date getDate()
     {
-        return dateChooser;
+        return dateChooser.getDate();
     }
 
     public void setDateChooser(Date date) {

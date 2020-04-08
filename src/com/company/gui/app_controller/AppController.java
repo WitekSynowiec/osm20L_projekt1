@@ -50,7 +50,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                 mView.getEPanel().getAmylaseTextField(),
                 mView.getEPanel().getGlucoseTextField(),
                 mView.getEPanel().getPhosphateTextField(),
-                mView.getEPanel().getDateChooser().getDate());
+                mView.getEPanel().getDate());
     }
 
     /**Metoda prywatna <code>validatePD()</code> sprawdza czy podane dane pacjentów są właściwe.*/
@@ -172,7 +172,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
                     str.append("Dodano badanie pacjenta ");
                 else
                     str.append("Zmodyfikowano badanie pacjenta ");
-                pRegister.getRecord(selectedRow).setExamination(new Examination(mView.getEPanel().getFloatGlucoseTextField(),mView.getEPanel().getFloatAmylaseTextField(),mView.getEPanel().getFloatPhosphateTextField(),mView.getEPanel().getDateChooser().getDate()));
+                pRegister.getRecord(selectedRow).setExamination(new Examination(mView.getEPanel().getFloatGlucoseTextField(),mView.getEPanel().getFloatAmylaseTextField(),mView.getEPanel().getFloatPhosphateTextField(),mView.getEPanel().getDate()));
                 model.fireTableRowsUpdated(0,model.getRowCount()-1);
                 mView.getEPanel().clearAllFields();
                 mView.getPDPanel().clearAllFields();
