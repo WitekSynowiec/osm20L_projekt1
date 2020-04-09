@@ -126,6 +126,19 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
     }
 
 
+    private void addSetHandler(TableModel model, StringBuilder str)
+    {
+        model.fireTableRowsUpdated(0,model.getRowCount()-1);
+        mView.getPDPanel().clearAllFields();
+        mView.getEPanel().clearAllFields();
+        mView.getPDPanel().enableChange(false);
+        mView.getEPanel().enableChange(false);
+        clearTableSelection();
+        mView.getPDPanel().enableChange(false);
+        mView.getEPanel().enableChange(false);
+        JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         int selectedRow = mView.getTPanel().getTable().getSelectedRow();
@@ -236,19 +249,6 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             clearTableSelection();
         }
 
-    }
-
-    void addSetHandler(TableModel model, StringBuilder str)
-    {
-        model.fireTableRowsUpdated(0,model.getRowCount()-1);
-        mView.getPDPanel().clearAllFields();
-        mView.getEPanel().clearAllFields();
-        mView.getPDPanel().enableChange(false);
-        mView.getEPanel().enableChange(false);
-        clearTableSelection();
-        mView.getPDPanel().enableChange(false);
-        mView.getEPanel().enableChange(false);
-        JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
