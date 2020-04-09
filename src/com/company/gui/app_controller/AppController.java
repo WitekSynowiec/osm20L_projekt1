@@ -141,45 +141,29 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             PatientRecord record = new PatientRecord(mView.getPDPanel().getTextGetNameTextField(), mView.getPDPanel().getTextGetSurnameTextField(), mView.getPDPanel().getTextGetPeselTextField(), mView.getPDPanel().getGetSex(), mView.getPDPanel().getGetInsurance());
             Boolean isInDatabase = pRegister.contains(record);
 
-            if(selectedRow == -1){
-                if (validatePD(record, true)){
-                    pRegister.add(record);
-                    str.append("Dodano pacjenta ");
-                    str.append(pRegister.getRecord(pRegister.getSize()-1).getName());
-                    str.append(" ");
-                    str.append(pRegister.getRecord(pRegister.getSize()-1).getSurname());
-                    addSetHandler(model, str,1);
-                }
+            if ((selectedRow!=-1 && !pRegister.getRecord(selectedRow).getPesel().equals(mView.getPDPanel().getTextGetPeselTextField()) && validatePD(record, true))||(selectedRow!=-1 && pRegister.getRecord(selectedRow).getPesel().equals(mView.getPDPanel().getTextGetPeselTextField()) && validatePD(record, false)))
+            {
+                pRegister.getRecord(selectedRow).setName(mView.getPDPanel().getTextGetNameTextField());
+                pRegister.getRecord(selectedRow).setSurname(mView.getPDPanel().getTextGetSurnameTextField());
+                pRegister.getRecord(selectedRow).setPesel(mView.getPDPanel().getTextGetPeselTextField());
+                pRegister.getRecord(selectedRow).setSex(mView.getPDPanel().getGetSex());
+                pRegister.getRecord(selectedRow).setIns(mView.getPDPanel().getGetInsurance());
+                str.append("Zmodyfikowano pacjenta ");
+                str.append(pRegister.getRecord(selectedRow).getName());
+                str.append(" ");
+                str.append(pRegister.getRecord(selectedRow).getSurname());
+                addSetHandler(model, str);
             }
-            else{
-                if (pRegister.getRecord(selectedRow).getPesel().equals(mView.getPDPanel().getTextGetPeselTextField())){
-                    if (validatePD(record, false))
-                    {
-                        pRegister.getRecord(selectedRow).setName(mView.getPDPanel().getTextGetNameTextField());
-                        pRegister.getRecord(selectedRow).setSurname(mView.getPDPanel().getTextGetSurnameTextField());
-                        pRegister.getRecord(selectedRow).setPesel(mView.getPDPanel().getTextGetPeselTextField());
-                        pRegister.getRecord(selectedRow).setSex(mView.getPDPanel().getGetSex());
-                        pRegister.getRecord(selectedRow).setIns(mView.getPDPanel().getGetInsurance());
-                        str.append("Zmodyfikowano pacjenta ");
-                        str.append(pRegister.getRecord(selectedRow).getName());
-                        str.append(" ");
-                        str.append(pRegister.getRecord(selectedRow).getSurname());
-                        addSetHandler(model, str, 0);
-                    }
-                }
-                else{
-                    if (validatePD(record, true))
-                    {
-                        pRegister.add(record);
-                        str.append("Dodano pacjenta ");
-                        str.append(pRegister.getRecord(pRegister.getSize()-1).getName());
-                        str.append(" ");
-                        str.append(pRegister.getRecord(pRegister.getSize()-1).getSurname());
-                        addSetHandler(model, str,1);
-                    }
+            else if ((selectedRow == -1 && validatePD(record, true)))
+            {
+                pRegister.add(record);
+                str.append("Dodano pacjenta ");
+                str.append(pRegister.getRecord(pRegister.getSize()-1).getName());
+                str.append(" ");
+                str.append(pRegister.getRecord(pRegister.getSize()-1).getSurname());
+                addSetHandler(model, str);
+            }
 
-                }
-            }
         }
         if (source == mView.getPDPanel().getCpdButton())
         {
@@ -254,7 +238,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
 
     }
 
-    void addSetHandler(TableModel model, StringBuilder str, int message)
+    void addSetHandler(TableModel model, StringBuilder str)
     {
         model.fireTableRowsUpdated(0,model.getRowCount()-1);
         mView.getPDPanel().clearAllFields();
@@ -264,10 +248,7 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
         clearTableSelection();
         mView.getPDPanel().enableChange(false);
         mView.getEPanel().enableChange(false);
-        if (message == 1)
-            JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.INFORMATION_MESSAGE);
-        else
-            JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(mView, str, "Wiadomość", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
