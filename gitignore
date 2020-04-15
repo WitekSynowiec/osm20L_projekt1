@@ -1,4 +1,6 @@
 # ---> Eclipse
+idea/
+out/
 bin/
 tmp/
 *.tmp
