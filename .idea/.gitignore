@@ -1,9 +1,9 @@
 # Default ignored files
 /workspace.xml
-out/
-idea/
-bin/
-tmp/
+/out/
+/idea/
+/bin/
+/tmp/
 *.tmp
 *.bak
 *.swp
