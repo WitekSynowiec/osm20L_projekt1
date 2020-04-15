@@ -1,0 +1,10 @@
+# ---> Eclipse
+idea/
+out/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+
