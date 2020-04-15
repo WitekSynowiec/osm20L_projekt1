@@ -3,7 +3,6 @@
 out/
 idea/
 bin/
-**/
 tmp/
 *.tmp
 *.bak
