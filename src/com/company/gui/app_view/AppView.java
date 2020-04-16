@@ -21,6 +21,9 @@ public class AppView extends JFrame {
     private PDPanel patientDataPanel;
     private EPanel examinationPanel;
     private TablePanel tablePanel;
+    private JMenuItem menuItem;
+    private JMenuBar menuBar;
+    private JMenu submenu;
     private PatientRegister patientRegister;
     private AppController ctrl;
 
@@ -53,7 +56,12 @@ public class AppView extends JFrame {
         patientDataPanel = new PDPanel();
         examinationPanel = new EPanel();
         tablePanel = new TablePanel(patientRegister);
-
+        menuBar = new JMenuBar();
+        submenu = new JMenu("Aplikacja");
+        menuItem = new JMenuItem("Zamknij");
+        submenu.add(menuItem);
+        menuBar.add(submenu);
+        this.setJMenuBar(menuBar);
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -96,6 +104,7 @@ public class AppView extends JFrame {
         tablePanel.getDelButton().addActionListener(ctrl);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(ctrl);
         tablePanel.getTable().getModel().addTableModelListener(ctrl);
+        menuItem.addActionListener(ctrl);
     }
 
     /**Metoda <code>getPDPanel()</code> odpowiedzialna jest za wydanie obiektu panelu
@@ -117,6 +126,13 @@ public class AppView extends JFrame {
      * ze względu na dostępność w klasie kontrolera.*/
     public TablePanel getTPanel(){
         return tablePanel;
+    }
+
+    /**Metoda <code>getMenuItem()</code> odpowiedzialna jest za wydanie obiektu
+     * <code>JMenuItem</code> na żądania wystosowane w innych klasach. Jest metodą publiczną
+     * ze względu na dostępność w klasie kontrolera.*/
+    public JMenuItem getMenuItem() {
+        return menuItem;
     }
 
 }

@@ -249,6 +249,12 @@ public class AppController implements ActionListener, ListSelectionListener, Tab
             clearTableSelection();
         }
 
+        if (source == mView.getMenuItem())
+        {
+            mView.setVisible(false);
+            mView.dispose();
+        }
+
     }
 
     @Override
