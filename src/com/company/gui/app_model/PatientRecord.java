@@ -1,5 +1,7 @@
 package com.company.gui.app_model;
 
+import java.util.Objects;
+
 /** Klasa {@code PatientRecord} odpowiada za przechowanie i obsługę danych pacjenta.
  * i ich badań. Jej parametry są parametrami danych pacjenta <code>fullName</code>,
  * <code>pesel</code>, <code>sex</code>, <code>ins</code>, oraz jego badania <code>examination</code>.
@@ -104,5 +106,28 @@ public class PatientRecord {
      * ona wtedy, kiedy obaj pacjenci mają ten sam numer pesel. */
     public boolean equals(PatientRecord record){
         return record.getPesel().equals(pesel);
+
+    }
+
+    /**
+     *
+     * @param o reprezentuje obiekt do porównania
+     * @return zwraca true gdy obiekt zawiera ten sam numer pesel i jest klasy PatientRecord
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PatientRecord record = (PatientRecord) o;
+        return Objects.equals(getPesel(), record.getPesel());
+    }
+
+    /**
+     *
+     * @return zwraca wynik funkcji haszującej po numerze pesel obiektu klasy
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPesel());
     }
 }
